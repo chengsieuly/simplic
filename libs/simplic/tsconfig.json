@@ -11,14 +11,11 @@
   "include": [],
   "references": [
     {
-      "path": "./tsconfig.app.json"
+      "path": "./tsconfig.lib.json"
+    },
+    {
+      "path": "./tsconfig.storybook.json"
     }
   ],
-  "extends": "./tsconfig.base.json",
-  "ts-node": {
-    "compilerOptions": {
-      "module": "commonjs",
-      "moduleResolution": "node10"
-    }
-  }
+  "extends": "../../tsconfig.base.json"
 }
