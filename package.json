@@ -4,6 +4,7 @@
   "private": true,
   "license": "MIT",
   "scripts": {
+    "start": "nx run simplic:storybook",
     "gen:storybook": "nx g @nx/react:stories --project=simplic",
     "deploy": "rimraf dist && nx build simplic && npm publish dist/libs/simplic"
   },
