@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Button } from '.';
-import { within } from '@storybook/testing-library';
-import { expect } from '@storybook/jest';
+import { userEvent, within } from '@storybook/testing-library';
+import { expect, jest } from '@storybook/jest';
+import { action } from '@storybook/addon-actions';
 
 const meta: Meta<typeof Button> = {
   component: Button,
@@ -10,14 +11,26 @@ const meta: Meta<typeof Button> = {
 export default meta;
 type Story = StoryObj<typeof Button>;
 
-export const Primary = {
-  args: {},
-};
+const onClickMock = jest.fn(action('clicked'));
 
-export const Heading: Story = {
-  args: {},
+export const Primary: Story = {
+  args: {
+    children: 'Click me',
+    onClick: onClickMock,
+  },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    expect(canvas.getByText(/Welcome to Button!/gi)).toBeTruthy();
+    const button = canvas.getByText(/Click me/gi);
+    await userEvent.click(button);
+    expect(button).toBeTruthy();
+    expect(onClickMock).toHaveBeenCalledTimes(1);
+  },
+};
+
+export const Secondary: Story = {
+  args: {
+    children: 'Click me',
+    variant: 'secondary',
+    onClick: action('clicked'),
   },
 };
