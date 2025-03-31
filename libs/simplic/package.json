@@ -1,12 +1,17 @@
 {
   "name": "@jangy/simplic",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "./index.js",
   "exports": {
     ".": {
       "import": "./index.mjs",
       "require": "./index.js",
       "types": "./index.d.ts"
+    },
+    "./utils": {
+      "import": "./utils/index.ts",
+      "require": "./utils/index.js",
+      "types": "./utils/index.d.ts"
     }
   },
   "publishConfig": {
