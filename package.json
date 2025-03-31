@@ -5,8 +5,9 @@
   "license": "MIT",
   "scripts": {
     "start": "nx run simplic:storybook",
-    "gen:storybook": "nx g @nx/react:stories --project=simplic",
-    "deploy": "rimraf dist && nx build simplic && npm publish dist/libs/simplic"
+    "build": "rimraf dist && nx build simplic",
+    "gen": "nx g @nx/react:stories --project=simplic",
+    "deploy": "npm run build && npm publish dist/libs/simplic"
   },
   "nx": {
     "includedScripts": []
