@@ -1,6 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { ColumnNavigation } from './index';
-import { ArchiveBoxIcon, HomeIcon } from '@heroicons/react/24/outline';
+import {
+  ArchiveBoxIcon,
+  CloudIcon,
+  HomeIcon,
+} from '@heroicons/react/24/outline';
 import { SparklesIcon } from '@heroicons/react/24/solid';
 
 const meta: Meta<typeof ColumnNavigation> = {
@@ -27,7 +31,24 @@ export const Primary: Story = {
         id: '2',
         label: 'Collections',
         icon: ArchiveBoxIcon,
+        items: [
+          {
+            id: '2a',
+            label: 'Cups',
+          },
+          {
+            id: '2b',
+            label: 'Bowls',
+          },
+        ],
       },
     ],
+  },
+  argTypes: {
+    activeItemId: {
+      control: { type: 'select' },
+      options: ['1', '2a', '2b'],
+      description: 'Select the active item ID',
+    },
   },
 };
