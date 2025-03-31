@@ -1,2 +1,3 @@
 export * from './lib/button';
-export * from './lib/utils/generate-colors';
+export * from './lib/column-navigation';
+export * from './lib/utils';

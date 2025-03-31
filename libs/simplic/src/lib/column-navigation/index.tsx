@@ -8,6 +8,7 @@ import {
   useState,
 } from 'react';
 import { MinusIcon, PlusIcon } from '@heroicons/react/16/solid';
+import { Block } from '../block';
 
 export interface ColumnNavigationItem {
   id: string;
@@ -37,7 +38,8 @@ export const ColumnNavigation = ({
   const navigationTitleId = useId();
 
   return (
-    <nav
+    <Block
+      as="nav"
       aria-labelledby={navigationTitleId}
       className="bg-secondary-100 p-7 rounded-3xl"
     >
@@ -49,7 +51,7 @@ export const ColumnNavigation = ({
       </div>
       <hr className="border-t-secondary-200 mx-3 mt-5 mb-9" />
       <Section items={items} activeItemId={activeItemId} />
-    </nav>
+    </Block>
   );
 };
 
