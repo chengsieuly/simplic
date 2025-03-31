@@ -15,7 +15,7 @@ export const Button = ({
     <button
       {...rest}
       className={cn(
-        'font-semibold py-2 px-4 rounded-lg transitions duration-200 ease-in-out',
+        'font-semibold py-2 px-4 rounded-lg transitions duration-300 ease-in-out',
         {
           'bg-primary-600 text-white hover:bg-primary-500':
             variant === 'primary',
