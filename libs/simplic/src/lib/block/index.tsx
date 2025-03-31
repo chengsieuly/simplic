@@ -1,3 +1,4 @@
+import cn from 'classnames';
 import { ElementType, JSX, PropsWithChildren } from 'react';
 
 interface BlockProps<T extends ElementType> extends PropsWithChildren {
@@ -8,9 +9,10 @@ interface BlockProps<T extends ElementType> extends PropsWithChildren {
 export const Block = ({
   children,
   as: As = 'div',
+  className,
   ...rest
 }: BlockProps<keyof JSX.IntrinsicElements>) => (
-  <As className="bg-secondary-100 p-7 rounded-3xl" {...rest}>
+  <As className={cn('bg-secondary-100 p-7 rounded-3xl', className)} {...rest}>
     {children}
   </As>
 );
