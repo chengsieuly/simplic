@@ -1,18 +1,13 @@
+import { ArchiveBoxIcon, HomeIcon } from '@heroicons/react/24/outline';
+import { SparklesIcon } from '@heroicons/react/24/solid';
+import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
 import { ColumnNavigation } from './index';
-import {
-  ArchiveBoxIcon,
-  CloudIcon,
-  HomeIcon,
-} from '@heroicons/react/24/outline';
-import { SparklesIcon } from '@heroicons/react/24/solid';
 
 const meta: Meta<typeof ColumnNavigation> = {
   component: ColumnNavigation,
   title: 'ColumnNavigation',
 };
-
-export default meta;
 
 type Story = StoryObj<typeof ColumnNavigation>;
 
@@ -21,11 +16,13 @@ export const Primary: Story = {
     title: 'Menu',
     logo: <SparklesIcon className="w-4" />,
     activeItemId: '2',
+    onItemClick: action('clicked'),
     items: [
       {
         id: '1',
         label: 'Home',
         icon: HomeIcon,
+        href: '/',
       },
       {
         id: '2',
@@ -35,6 +32,7 @@ export const Primary: Story = {
           {
             id: '2a',
             label: 'Cups',
+            href: '/collections/cups',
           },
           {
             id: '2b',
@@ -52,3 +50,5 @@ export const Primary: Story = {
     },
   },
 };
+
+export default meta;

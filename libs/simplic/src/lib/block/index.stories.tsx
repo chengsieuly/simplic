@@ -5,7 +5,6 @@ const meta: Meta<typeof Block> = {
   component: Block,
   title: 'Block',
 };
-export default meta;
 
 export const Primary = {
   args: {
@@ -15,3 +14,5 @@ export const Primary = {
     as: { table: { disable: true } },
   },
 };
+
+export default meta;

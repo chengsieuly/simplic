@@ -10,6 +10,8 @@ import {
 import { MinusIcon, PlusIcon } from '@heroicons/react/16/solid';
 import { Block } from '../block';
 
+export type OnItemClickFn = (item: ColumnNavigationItem) => void;
+
 export interface ColumnNavigationItem {
   id: string;
   icon?: ForwardRefExoticComponent<
@@ -19,6 +21,7 @@ export interface ColumnNavigationItem {
     } & RefAttributes<SVGSVGElement>
   >;
   label: string;
+  href?: string;
   items?: ColumnNavigationItem[];
 }
 
@@ -27,6 +30,7 @@ export interface ColumnNavigationProps {
   activeItemId: string;
   title: string;
   logo: React.ReactNode;
+  onItemClick: OnItemClickFn;
 }
 
 export const ColumnNavigation = ({
@@ -34,6 +38,7 @@ export const ColumnNavigation = ({
   activeItemId,
   title,
   logo,
+  onItemClick,
 }: ColumnNavigationProps) => {
   const navigationTitleId = useId();
 
@@ -50,7 +55,11 @@ export const ColumnNavigation = ({
         </h2>
       </div>
       <hr className="border-t-secondary-200 mx-3 mt-5 mb-9" />
-      <Section items={items} activeItemId={activeItemId} />
+      <Section
+        items={items}
+        activeItemId={activeItemId}
+        onItemClick={onItemClick}
+      />
     </Block>
   );
 };
@@ -59,15 +68,22 @@ export const Section = ({
   className,
   items,
   activeItemId,
+  onItemClick,
 }: {
   className?: string;
   items: ColumnNavigationItem[];
   activeItemId: string;
+  onItemClick: OnItemClickFn;
 }) => {
   return (
     <ul className={cn('space-y-3', className)}>
       {items.map((item) => (
-        <SectionItem key={item.id} item={item} activeItemId={activeItemId} />
+        <SectionItem
+          key={item.id}
+          item={item}
+          activeItemId={activeItemId}
+          onItemClick={onItemClick}
+        />
       ))}
     </ul>
   );
@@ -76,14 +92,17 @@ export const Section = ({
 export const SectionItem = ({
   item,
   activeItemId,
+  onItemClick,
 }: {
   item: ColumnNavigationItem;
   activeItemId: string;
+  onItemClick: OnItemClickFn;
 }) => {
   const [expanded, setExpanded] = useState(false);
 
   const handleExpandedClick = (e: MouseEvent<HTMLDivElement>) => {
     setExpanded(!expanded);
+    onItemClick?.(item);
     e.preventDefault();
     e.stopPropagation();
   };
@@ -100,10 +119,10 @@ export const SectionItem = ({
         )}
         onClick={handleExpandedClick}
       >
-        <div className="flex items-center gap-3">
+        <a href={item.href} className="flex items-center gap-3">
           {item.icon && <item.icon className="w-5" />}
           <span className="text-sm">{item.label}</span>
-        </div>
+        </a>
         {item.items?.length && (
           <button
             aria-label={`${expanded ? 'Hide' : 'Show'} ${item.label} items`}
@@ -142,6 +161,7 @@ export const SectionItem = ({
             className="my-3 ml-6 "
             items={item.items}
             activeItemId={activeItemId}
+            onItemClick={onItemClick}
           />
         </div>
       )}
