@@ -19,5 +19,6 @@ export function getDefaultTheme() {
   return {
     ...generateColors('primary', 'blue'),
     ...generateColors('secondary', 'stone'),
+    ...generateColors('success', 'emerald'),
   };
 }
