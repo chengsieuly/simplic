@@ -1,3 +1,4 @@
+import { MinusIcon, PlusIcon } from '@heroicons/react/16/solid';
 import cn from 'classnames';
 import {
   ForwardRefExoticComponent,
@@ -7,7 +8,6 @@ import {
   useId,
   useState,
 } from 'react';
-import { MinusIcon, PlusIcon } from '@heroicons/react/16/solid';
 import { Block } from '../block';
 
 export type OnItemClickFn = (item: ColumnNavigationItem) => void;
@@ -139,7 +139,7 @@ export const SectionItem = ({
             <span
               className={cn(
                 'absolute top-0 right-0 transition-transform duration-300 ease-in-out',
-                expanded ? 'rotate-180 opacity-0' : 'rotate-0 opacity-100'
+                expanded ? 'rotate-0 opacity-0' : 'rotate-180 opacity-100'
               )}
             >
               <PlusIcon className="w-5 h-5" />
@@ -150,9 +150,9 @@ export const SectionItem = ({
       {item.items?.length && (
         <div
           className={cn(
-            'transitions duration-300 ease-out mt-3 border-l-2 border-secondary-950 ml-6',
+            'transitions duration-300 ease-in-out mt-3 border-l-2 border-secondary-950 ml-6',
             {
-              'max-h-[1000px] overflow-hidden': expanded,
+              'max-h-[2000px] overflow-hidden': expanded,
               'max-h-0 overflow-hidden': !expanded,
             }
           )}
