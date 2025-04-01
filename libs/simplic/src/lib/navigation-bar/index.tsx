@@ -20,7 +20,11 @@ export const NavigationBar = ({
       </div>
       <div className="flex gap-3">
         {avatarUrl ? (
-          <img src={avatarUrl} alt="profile pic" />
+          <img
+            src={avatarUrl}
+            alt="profile pic"
+            className="object-cover w-8 h-8 rounded-full"
+          />
         ) : (
           <UserCircleIcon className="w-8" />
         )}
