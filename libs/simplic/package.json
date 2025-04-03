@@ -1,6 +1,6 @@
 {
   "name": "@jangy/simplic",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "main": "./index.js",
   "exports": {
     ".": {
@@ -13,8 +13,8 @@
     "access": "public"
   },
   "peerDependencies": {
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
     "@heroicons/react": "^2.2.0",
     "classnames": "^2.5.1"
   }
