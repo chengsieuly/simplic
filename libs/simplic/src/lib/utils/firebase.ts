@@ -48,8 +48,8 @@ export class Firebase {
     this.db = getFirestore(this.app);
 
     if (process.env.NODE_ENV === 'development') {
-      connectStorageEmulator(this.storage, '192.168.0.238', 9199);
-      connectFirestoreEmulator(this.db, '192.168.0.238', 8080);
+      connectStorageEmulator(this.storage, 'localhost', 9199);
+      connectFirestoreEmulator(this.db, 'localhost', 8080);
 
       if (typeof window !== 'undefined') {
         // hide the firebase error message
@@ -68,3 +68,6 @@ export class Firebase {
     }
   }
 }
+
+export const db = Firebase.shared.db;
+export const storage = Firebase.shared.storage;
