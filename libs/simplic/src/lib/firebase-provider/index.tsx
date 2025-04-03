@@ -79,4 +79,4 @@ export const FirebaseProvider = ({
   );
 };
 
-export const useFirebase = useContext(FirebaseContext);
+export const useFirebase = () => useContext(FirebaseContext);
