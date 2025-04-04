@@ -1,6 +1,6 @@
 {
   "name": "@jangy/simplic",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "main": "./index.js",
   "exports": {
     ".": {
@@ -15,8 +15,10 @@
   "dependencies": {
     "@heroicons/react": "2.2.0",
     "classnames": "2.5.1",
-    "firebase": "11.6.0",
     "react": "19.0.0",
     "react-dom": "19.0.0"
+  },
+  "peerDependencies": {
+    "firebase": "11.6.0"
   }
 }
