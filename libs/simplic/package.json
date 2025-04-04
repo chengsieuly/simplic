@@ -1,6 +1,6 @@
 {
   "name": "@jangy/simplic",
-  "version": "0.0.21",
+  "version": "0.0.22",
   "main": "./index.js",
   "exports": {
     ".": {
@@ -17,8 +17,5 @@
     "classnames": "2.5.1",
     "react": "19.0.0",
     "react-dom": "19.0.0"
-  },
-  "peerDependencies": {
-    "firebase": "11.6.0"
   }
 }
