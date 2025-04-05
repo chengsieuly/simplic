@@ -1,5 +1,4 @@
 import { ArchiveBoxIcon, HomeIcon } from '@heroicons/react/24/outline';
-import { SparklesIcon } from '@heroicons/react/24/solid';
 import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
 import { PillsNavigation } from './index';
@@ -13,8 +12,6 @@ type Story = StoryObj<typeof PillsNavigation>;
 
 export const Primary: Story = {
   args: {
-    title: 'Menu',
-    logo: <SparklesIcon className="w-4" />,
     activeItemId: '2',
     onItemClick: action('clicked'),
     items: [
