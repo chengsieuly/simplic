@@ -28,16 +28,12 @@ export interface PillsNavigationItem {
 interface PillsNavigationProps {
   items: PillsNavigationItem[];
   activeItemId: string;
-  title: string;
-  logo: React.ReactNode;
   onItemClick: OnItemClickFn;
 }
 
 export const PillsNavigation = ({
   items,
   activeItemId,
-  title,
-  logo,
   onItemClick,
 }: PillsNavigationProps) => {
   const navigationTitleId = useId();
