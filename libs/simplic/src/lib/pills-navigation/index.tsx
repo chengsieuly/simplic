@@ -8,11 +8,10 @@ import {
   useId,
   useState,
 } from 'react';
-import { Block } from '../block';
 
-type OnItemClickFn = (item: ColumnNavigationItem) => void;
+type OnItemClickFn = (item: PillsNavigationItem) => void;
 
-export interface ColumnNavigationItem {
+export interface PillsNavigationItem {
   id: string;
   icon?: ForwardRefExoticComponent<
     Omit<SVGProps<SVGSVGElement>, 'ref'> & {
@@ -22,45 +21,35 @@ export interface ColumnNavigationItem {
   >;
   label: string;
   href?: string;
-  items?: ColumnNavigationItem[];
+  items?: PillsNavigationItem[];
+  hideLabel?: boolean;
 }
 
-interface ColumnNavigationProps {
-  items: ColumnNavigationItem[];
+interface PillsNavigationProps {
+  items: PillsNavigationItem[];
   activeItemId: string;
   title: string;
   logo: React.ReactNode;
   onItemClick: OnItemClickFn;
 }
 
-export const ColumnNavigation = ({
+export const PillsNavigation = ({
   items,
   activeItemId,
   title,
   logo,
   onItemClick,
-}: ColumnNavigationProps) => {
+}: PillsNavigationProps) => {
   const navigationTitleId = useId();
 
   return (
-    <Block
-      as="nav"
-      aria-labelledby={navigationTitleId}
-      className="bg-secondary-100 p-7 rounded-3xl"
-    >
-      <div className="flex gap-3 items-center">
-        {logo}
-        <h2 id={navigationTitleId} className="text-lg font-bold">
-          {title}
-        </h2>
-      </div>
-      <hr className="border-t-secondary-200 mx-3 mt-5 mb-9" />
+    <nav aria-labelledby={navigationTitleId}>
       <Section
         items={items}
         activeItemId={activeItemId}
         onItemClick={onItemClick}
       />
-    </Block>
+    </nav>
   );
 };
 
@@ -71,12 +60,12 @@ const Section = ({
   onItemClick,
 }: {
   className?: string;
-  items: ColumnNavigationItem[];
+  items: PillsNavigationItem[];
   activeItemId: string;
   onItemClick: OnItemClickFn;
 }) => {
   return (
-    <ul className={cn('space-y-3', className)}>
+    <ul className={cn('flex flex-nowrap gap-3', className)}>
       {items.map((item) => (
         <SectionItem
           key={item.id}
@@ -94,7 +83,7 @@ const SectionItem = ({
   activeItemId,
   onItemClick,
 }: {
-  item: ColumnNavigationItem;
+  item: PillsNavigationItem;
   activeItemId: string;
   onItemClick: OnItemClickFn;
 }) => {
@@ -108,10 +97,10 @@ const SectionItem = ({
   };
 
   return (
-    <li key={item.id}>
+    <li key={item.id} className="flex">
       <div
         className={cn(
-          'flex justify-between transitions duration-300 ease-in-out items-center p-3 rounded-3xl cursor-pointer',
+          'flex gap-3 justify-between transitions duration-300 ease-in-out items-center p-3 rounded-3xl cursor-pointer',
           {
             'bg-secondary-950 text-white': activeItemId === item.id,
             'hover:bg-secondary-200': activeItemId !== item.id,
@@ -121,7 +110,13 @@ const SectionItem = ({
       >
         <a href={item.href} className="flex items-center gap-3">
           {item.icon && <item.icon className="w-5" />}
-          <span className="text-sm">{item.label}</span>
+          <span
+            className={cn('text-sm', {
+              'sr-only': item.hideLabel,
+            })}
+          >
+            {item.label}
+          </span>
         </a>
         {item.items?.length && (
           <button
@@ -131,7 +126,7 @@ const SectionItem = ({
             <span
               className={cn(
                 'absolute top-0 right-0 transition-transform duration-300 ease-in-out',
-                expanded ? 'rotate-0 opacity-100' : 'rotate-180 opacity-0'
+                expanded ? 'rotate-180 opacity-100' : 'rotate-0 opacity-0'
               )}
             >
               <MinusIcon className="w-5 h-5" />
@@ -139,7 +134,7 @@ const SectionItem = ({
             <span
               className={cn(
                 'absolute top-0 right-0 transition-transform duration-300 ease-in-out',
-                expanded ? 'rotate-0 opacity-0' : 'rotate-180 opacity-100'
+                expanded ? 'rotate-180 opacity-0' : 'rotate-0 opacity-100'
               )}
             >
               <PlusIcon className="w-5 h-5" />
@@ -150,15 +145,15 @@ const SectionItem = ({
       {item.items?.length && (
         <div
           className={cn(
-            'transitions duration-300 ease-in-out mt-3 border-l-2 border-secondary-950 ml-6',
+            'transition-all duration-300 ease-in-out overflow-hidden',
             {
-              'max-h-[2000px] overflow-hidden': expanded,
-              'max-h-0 overflow-hidden': !expanded,
+              'max-w-0 opacity-0': !expanded,
+              'max-w-[2000px] opacity-100 overflow-hidden': expanded,
             }
           )}
         >
           <Section
-            className="my-3 ml-6 "
+            className="ml-3"
             items={item.items}
             activeItemId={activeItemId}
             onItemClick={onItemClick}
