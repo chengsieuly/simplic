@@ -12,7 +12,7 @@ export const Primary: Story = {
   args: {
     title: 'My carousel',
     children: ['1', '2', '3', '4'].map((item) => (
-      <div key={item} className="w-96">
+      <div key={item} className="border border-black w-96">
         {item}
       </div>
     )),

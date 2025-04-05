@@ -18,7 +18,7 @@ export const Carousel: React.FC<CarouselProps> = ({
         {title}
       </h2>
       <div
-        className="flex overflow-x-auto scroll-snap-x snap-mandatory"
+        className="flex overflow-x-auto scroll-snap-x snap-mandatory gap-5"
         role="region"
         aria-labelledby={titleId}
         {...rest}
