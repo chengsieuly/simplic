@@ -15,7 +15,7 @@ export const Carousel: React.FC<CarouselProps> = ({
   const titleId = useId();
 
   return (
-    <div className="relative space-y-2">
+    <div className="relative space-y-3">
       <h2 id={titleId} className="font-semibold text-3xl">
         {title}
       </h2>
