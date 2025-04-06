@@ -16,10 +16,12 @@ export const Carousel: React.FC<CarouselProps> = ({
 
   return (
     <div className="relative space-y-3">
-      <h2 id={titleId} className="text-3xl">
+      <h2 id={titleId} className="text-3xl tracking-tight">
         {title}
       </h2>
-      {description && <p className="text-sm text-gray-600">{description}</p>}
+      {description && (
+        <p className="text-sm text-gray-600 tracking-tight">{description}</p>
+      )}
       <div
         className="flex overflow-x-auto scroll-snap-x snap-mandatory gap-5"
         role="region"
