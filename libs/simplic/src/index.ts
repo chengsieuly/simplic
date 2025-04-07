@@ -2,6 +2,7 @@ export * from './lib/block';
 export * from './lib/button';
 export * from './lib/carousel';
 export * from './lib/column-navigation';
+export * from './lib/modal';
 export * from './lib/navigation-bar';
 export * from './lib/pills-navigation';
 export * from './lib/table';
