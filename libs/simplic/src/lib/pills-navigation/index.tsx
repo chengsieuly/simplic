@@ -104,7 +104,7 @@ const SectionItem = ({
         )}
         onClick={handleExpandedClick}
       >
-        <a href={item.href} className="flex items-center gap-3">
+        <a href={item.href} className="flex items-center gap-3 overflow-x-auto">
           {item.icon && <item.icon className="w-5" />}
           <span
             className={cn('text-sm', {
