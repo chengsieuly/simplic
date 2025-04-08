@@ -17,7 +17,7 @@ export const Modal = ({ open, close, children }: ModalProps) => {
   return (
     <div
       className={cn(
-        'fixed inset-0 flex items-center justify-center bg-gray-50 bg-opacity-90 transition-opacity',
+        'fixed inset-0 flex items-center justify-center bg-neutral-50 bg-opacity-90 transition-opacity',
         {
           'opacity-100 pointer-events-auto': open,
           'opacity-0 pointer-events-none': !open,
