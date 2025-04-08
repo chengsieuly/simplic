@@ -7,4 +7,5 @@ export * from './lib/navigation-bar';
 export * from './lib/pills-navigation';
 export * from './lib/table';
 export * from './lib/tag';
+export * from './lib/text-field';
 export * from './lib/utils';
