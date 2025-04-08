@@ -27,7 +27,7 @@ export const Modal = ({ open, close, children }: ModalProps) => {
     >
       <div
         className={cn(
-          'transition-transform ease-in-out duration-200 bg-white rounded-md shadow-lg transform',
+          'w-3/4 sm:w-1/2 transition-transform ease-in-out duration-200 bg-white rounded-md shadow-lg transform',
           {
             'scale-0 opacity-0': !open,
             'scale-100 opacity-100': open,
@@ -39,7 +39,7 @@ export const Modal = ({ open, close, children }: ModalProps) => {
             <XMarkIcon className="w-5 " />
           </button>
         </div>
-        <div className="p-3">{children}</div>
+        <div>{children}</div>
       </div>
     </div>
   );
