@@ -35,4 +35,13 @@ export const Secondary: Story = {
   },
 };
 
+export const Disabled: Story = {
+  args: {
+    disabled: true,
+    children: 'Click me',
+    variant: 'primary',
+    onClick: action('clicked'),
+  },
+};
+
 export default meta;

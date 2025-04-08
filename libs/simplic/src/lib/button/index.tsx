@@ -9,11 +9,13 @@ export const Button = ({
   className,
   children,
   variant = 'primary',
+  disabled,
   ...rest
 }: ButtonProps) => {
   return (
     <button
       {...rest}
+      disabled={disabled}
       className={cn(
         'font-semibold py-2 px-4 rounded-lg transitions duration-300 ease-in-out',
         {
@@ -23,6 +25,9 @@ export const Button = ({
         {
           'border border-secondary-600 hover:bg-secondary-100':
             variant === 'secondary',
+        },
+        {
+          'cursor-not-allowed': disabled,
         },
         className
       )}
