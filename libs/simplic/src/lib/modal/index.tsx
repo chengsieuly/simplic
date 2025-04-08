@@ -1,5 +1,6 @@
 import { XMarkIcon } from '@heroicons/react/24/solid';
 import cn from 'classnames';
+import { useEffect } from 'react';
 
 interface ModalProps {
   open: boolean;
@@ -13,6 +14,18 @@ export const Modal = ({ open, close, children }: ModalProps) => {
       close();
     }
   };
+
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [open]);
 
   return (
     <div
