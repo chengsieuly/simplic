@@ -16,9 +16,6 @@ export const Avatar: React.FC<AvatarProps> = ({
     <div
       className={cn(
         'relative flex items-center justify-center w-10 h-10 rounded-full overflow-hidden',
-        {
-          'outline outline-offset-2': !imageError && src,
-        },
         className
       )}
     >
