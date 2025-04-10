@@ -1,3 +1,4 @@
+export * from './lib/avatar';
 export * from './lib/block';
 export * from './lib/button';
 export * from './lib/carousel';
