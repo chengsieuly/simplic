@@ -6,9 +6,10 @@ interface ModalProps {
   open: boolean;
   children: React.ReactNode;
   close: () => void;
+  transparent?: boolean;
 }
 
-export const Modal = ({ open, close, children }: ModalProps) => {
+export const Modal = ({ open, close, children, transparent }: ModalProps) => {
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
       close();
@@ -34,6 +35,8 @@ export const Modal = ({ open, close, children }: ModalProps) => {
         {
           'opacity-100 pointer-events-auto': open,
           'opacity-0 pointer-events-none': !open,
+          'bg-neutral-50/90': transparent,
+          'bg-white': !transparent,
         }
       )}
       onClick={handleOverlayClick}
