@@ -30,7 +30,7 @@ export const Modal = ({ open, close, children }: ModalProps) => {
   return (
     <div
       className={cn(
-        'transitions ease-in-out duration-200 fixed inset-0 flex items-center justify-center bg-neutral-50 bg-opacity-90',
+        'transitions ease-in-out duration-200 fixed inset-0 flex items-center justify-center bg-neutral-50/90',
         {
           'opacity-100 pointer-events-auto': open,
           'opacity-0 pointer-events-none': !open,
