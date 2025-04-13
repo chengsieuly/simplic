@@ -12,4 +12,5 @@ export * from './lib/pills-navigation';
 export * from './lib/table';
 export * from './lib/tag';
 export * from './lib/text-field';
+export * from './lib/toasts';
 export * from './lib/utils';

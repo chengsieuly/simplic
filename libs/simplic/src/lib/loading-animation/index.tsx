@@ -2,7 +2,7 @@ import { ViewfinderCircleIcon } from '@heroicons/react/24/outline';
 import classNames from 'classnames';
 
 interface LoadingAnimationProps {
-  size: 'small' | 'medium' | 'large';
+  size?: 'small' | 'medium' | 'large';
 }
 
 export const LoadingAnimation = ({
