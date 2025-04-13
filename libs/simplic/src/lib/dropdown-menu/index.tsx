@@ -7,9 +7,9 @@ import React, {
   useState,
 } from 'react';
 
-type DropdownItem = {
+type DropdownItem<T = Record<string, any>> = T & {
   label: string;
-  onClick: () => void;
+  onClick: (meta: DropdownItem) => void;
 };
 
 type DropdownMenuProps = {
@@ -72,10 +72,10 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
               <button
                 key={index}
                 onClick={() => {
-                  item.onClick();
+                  item.onClick(item);
                   setOpen(false);
                 }}
-                className="w-full px-4 py-2 text-left text-sm text-gray-700 transition hover:bg-gray-100 focus-visible:bg-gray-100 focus-visible:outline-none cursor-pointer"
+                className="w-full px-4 py-2 text-left transition hover:bg-gray-100 focus-visible:bg-gray-100 focus-visible:outline-none cursor-pointer"
                 role="menuitem"
               >
                 {item.label}
