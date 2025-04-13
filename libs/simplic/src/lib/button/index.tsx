@@ -14,10 +14,11 @@ export const Button = ({
 }: ButtonProps) => {
   return (
     <button
-      {...rest}
+      type="button"
       disabled={disabled}
+      {...rest}
       className={cn(
-        'font-semibold py-2 px-4 rounded-lg transitions duration-300 ease-in-out cursor-pointer',
+        'font-semibold py-2 px-4 rounded-lg transitions duration-300 ease-in-out',
         {
           'bg-primary-600 text-white hover:bg-primary-500':
             variant === 'primary',
@@ -28,6 +29,9 @@ export const Button = ({
         },
         {
           'cursor-not-allowed': disabled,
+        },
+        {
+          'cursor-pointer': !disabled,
         },
         className
       )}
