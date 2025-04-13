@@ -1,16 +1,63 @@
 import { UserCircleIcon } from '@heroicons/react/24/solid';
 import cn from 'classnames';
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { isImageValid } from '../utils';
 
-interface AvatarProps extends React.ImgHTMLAttributes<HTMLImageElement> {}
+interface AvatarProps extends React.ImgHTMLAttributes<HTMLImageElement> {
+  firstName: string;
+  lastName: string;
+}
 
 export const Avatar: React.FC<AvatarProps> = ({
   src,
   alt = 'User Avatar',
+  firstName,
+  lastName,
   className,
   ...rest
 }) => {
-  const [imageError, setImageError] = useState(false);
+  const [loaded, setLoaded] = useState(false);
+  const [hasError, setHasError] = useState(false);
+  const imgRef = useRef(null);
+
+  useEffect(() => {
+    (async () => {
+      const valid = await isImageValid(src || '');
+
+      if (!valid) {
+        setHasError(true);
+      }
+
+      setLoaded(true);
+    })();
+  }, [src]);
+
+  const renderImage = () => {
+    if (!loaded) {
+      return <UserCircleIcon className="w-full h-full" />;
+    }
+    if (hasError) {
+      return (
+        <div
+          className={
+            'flex w-full h-full text-xs rounded-full justify-center items-center bg-black text-white font-semibold'
+          }
+        >
+          {firstName[0]}
+          {lastName[0]}
+        </div>
+      );
+    }
+    return (
+      <img
+        ref={imgRef}
+        src={src}
+        alt={alt}
+        className="w-full h-full object-cover"
+        {...rest}
+      />
+    );
+  };
 
   return (
     <div
@@ -19,17 +66,7 @@ export const Avatar: React.FC<AvatarProps> = ({
         className
       )}
     >
-      {!imageError && src ? (
-        <img
-          src={src}
-          alt={alt}
-          className="w-full h-full object-cover"
-          onError={() => setImageError(true)}
-          {...rest}
-        />
-      ) : (
-        <UserCircleIcon className="w-full h-full" />
-      )}
+      {renderImage()}
     </div>
   );
 };

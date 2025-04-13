@@ -8,6 +8,8 @@ const meta: Meta<typeof Avatar> = {
 
 export const Primary = {
   args: {
+    firstName: 'Cheng',
+    lastName: 'Ly',
     src: 'https://miro.medium.com/v2/resize:fit:2400/0*dMzMCPD6twNUCfL1.',
   },
 };
