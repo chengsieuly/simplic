@@ -62,7 +62,7 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
       {clonedTrigger}
       {open && (
         <div
-          className="absolute left-0 z-20 mt-2 w-44 origin-top-left rounded-lg border border-gray-200 bg-white shadow-xs animate-in fade-in zoom-in duration-150 ease-out"
+          className="absolute right-0 z-20 mt-2 w-44 origin-top-right rounded-lg border border-gray-200 bg-white shadow-xs animate-in fade-in zoom-in duration-150 ease-out"
           ref={menuRef}
           role="menu"
           onKeyDown={handleKeyDown}
@@ -87,3 +87,7 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
     </div>
   );
 };
+
+export const DropdownTrigger = ({ children, ...rest }: any) => (
+  <button {...rest}>{children}</button>
+);
