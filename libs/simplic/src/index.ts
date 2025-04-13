@@ -3,6 +3,7 @@ export * from './lib/block';
 export * from './lib/button';
 export * from './lib/carousel';
 export * from './lib/column-navigation';
+export * from './lib/drag-and-drop';
 export * from './lib/dropdown-menu';
 export * from './lib/modal';
 export * from './lib/navigation-bar';
