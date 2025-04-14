@@ -50,6 +50,7 @@ export const Avatar: React.FC<AvatarProps> = ({
     }
     return (
       <img
+        key={src}
         ref={imgRef}
         src={src}
         alt={alt}
