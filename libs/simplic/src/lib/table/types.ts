@@ -1,5 +1,3 @@
-import { TagColor } from '../tag/types';
-
 export interface ColumnDefinition {
   key: string;
   label: string;
@@ -9,7 +7,7 @@ export interface ColumnDefinition {
 export interface TagData {
   id: string;
   label: string;
-  color?: TagColor;
+  color?: string;
 }
 
 export type RowValue = string | boolean | Date | TagData[];
