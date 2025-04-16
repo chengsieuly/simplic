@@ -1,7 +1,8 @@
 {
   "name": "@jangy/simplic",
-  "version": "0.0.54",
+  "version": "0.0.55",
   "main": "./index.js",
+  "style": "./simplic.css",
   "exports": {
     ".": {
       "import": "./index.mjs",
@@ -10,7 +11,7 @@
     }
   },
   "files": [
-    "lib/simplic.css"
+    "simplic.css"
   ],
   "publishConfig": {
     "access": "public"
