@@ -1,5 +1,6 @@
+import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Tag } from './';
+import { RemovableTag, Tag } from './';
 
 const meta: Meta<typeof Tag> = {
   component: Tag,
@@ -15,10 +16,14 @@ export const Primary: Story = {
   argTypes: {
     color: {
       control: { type: 'select' },
-      options: ['green', 'fuchsia', 'stone'],
+      options: ['bg-green-200', 'bg-fuchsia-200', 'bg-stone-200'],
       description: 'Select tag color',
     },
   },
+};
+
+export const Remove = () => {
+  return <RemovableTag onRemove={action('clicked')}>japan</RemovableTag>;
 };
 
 export default meta;
