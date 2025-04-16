@@ -2,6 +2,7 @@ export * from './lib/avatar';
 export * from './lib/block';
 export * from './lib/button';
 export * from './lib/carousel';
+export * from './lib/color-picker';
 export * from './lib/column-navigation';
 export * from './lib/drag-and-drop';
 export * from './lib/dropdown-menu';
