@@ -1,6 +1,6 @@
 {
   "name": "@jangy/simplic",
-  "version": "0.0.55",
+  "version": "0.0.56",
   "main": "./index.js",
   "style": "./simplic.css",
   "exports": {
@@ -8,11 +8,9 @@
       "import": "./index.mjs",
       "require": "./index.js",
       "types": "./index.d.ts"
-    }
+    },
+    "./simplic.css": "./simplic.css"
   },
-  "files": [
-    "simplic.css"
-  ],
   "publishConfig": {
     "access": "public"
   },
