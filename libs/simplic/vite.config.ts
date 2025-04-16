@@ -12,7 +12,14 @@ export default defineConfig(() => ({
   plugins: [
     react(),
     nxViteTsPaths(),
-    nxCopyAssetsPlugin(['*.md']),
+    nxCopyAssetsPlugin([
+      {
+        input: 'src',
+        output: '.',
+        glob: 'simplic.css',
+      },
+      '*.md',
+    ]),
     dts({
       entryRoot: 'src',
       tsconfigPath: path.join(__dirname, 'tsconfig.lib.json'),

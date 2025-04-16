@@ -11,6 +11,7 @@ type Story = StoryObj<typeof DropdownMenu>;
 export const Primary: Story = {
   args: {
     children: <button>Hi</button>,
+    anchorPosition: 'left',
     items: [
       { label: 'Profile', onClick: () => alert('Profile') },
       { label: 'Logout', onClick: () => alert('Logout') },

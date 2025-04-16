@@ -1,0 +1,15 @@
+import type { Meta } from '@storybook/react';
+import { useState } from 'react';
+import { ColorPicker } from '.';
+
+const meta: Meta<typeof ColorPicker> = {
+  component: ColorPicker,
+  title: 'ColorPicker',
+};
+
+export const Primary = () => {
+  const [color, setColor] = useState('');
+  return <ColorPicker color={color} onChange={setColor} />;
+};
+
+export default meta;

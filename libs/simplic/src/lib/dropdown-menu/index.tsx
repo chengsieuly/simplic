@@ -14,11 +14,13 @@ type DropdownItem<T = Record<string, any>> = T & {
 
 type DropdownMenuProps = {
   items: DropdownItem[];
+  anchorPosition?: 'left' | 'right';
   children: ReactElement<any>;
 };
 
 export const DropdownMenu: React.FC<DropdownMenuProps> = ({
   items,
+  anchorPosition = 'right',
   children,
 }) => {
   const [open, setOpen] = useState(false);
@@ -62,7 +64,13 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
       {clonedTrigger}
       {open && (
         <div
-          className="absolute right-0 z-20 mt-2 w-44 origin-top-right rounded-lg border border-gray-200 bg-white shadow-xs animate-in fade-in zoom-in duration-150 ease-out"
+          className={cn(
+            'absolute z-20 mt-2 w-44 rounded-lg border border-gray-200 bg-white shadow-xs animate-fade-down animate-duration-100',
+            {
+              'right-0': anchorPosition === 'right',
+              'left-0': anchorPosition === 'left',
+            }
+          )}
           ref={menuRef}
           role="menu"
           onKeyDown={handleKeyDown}
