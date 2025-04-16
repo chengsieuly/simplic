@@ -15,4 +15,12 @@ export const Primary: Story = {
   },
 };
 
+export const HiddenLabel: Story = {
+  args: {
+    label: 'Your email',
+    hideLabel: true,
+    value: '',
+  },
+};
+
 export default meta;
