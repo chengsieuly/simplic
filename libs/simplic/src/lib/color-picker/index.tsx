@@ -58,7 +58,10 @@ export const ColorPicker = ({
   }, []);
 
   return (
-    <div className="relative inline-block text-left" ref={dropdownRef}>
+    <div
+      className="relative inline-block text-left w-10 h-10"
+      ref={dropdownRef}
+    >
       <button
         type="button"
         ref={triggerRef}
