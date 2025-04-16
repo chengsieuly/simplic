@@ -19,6 +19,7 @@ export const HiddenLabel: Story = {
   args: {
     label: 'Your email',
     hideLabel: true,
+    alignment: 'left',
     value: '',
   },
 };
