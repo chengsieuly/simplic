@@ -9,7 +9,9 @@ const meta: Meta<typeof ColorPicker> = {
 
 export const Primary = () => {
   const [color, setColor] = useState('');
-  return <ColorPicker color={color} onChange={setColor} />;
+  return (
+    <ColorPicker color={color} onChange={setColor} anchorPosition="left" />
+  );
 };
 
 export default meta;

@@ -1,3 +1,4 @@
+import cn from 'classnames';
 import { useEffect, useRef, useState } from 'react';
 
 const SHADE = 200;
@@ -29,11 +30,13 @@ const tailwindColors = [
 
 interface ColorPickerProps {
   color: string;
+  anchorPosition?: 'left' | 'right';
   onChange: (color: string) => void;
 }
 
 export const ColorPicker = ({
   color = `blue-${SHADE}`,
+  anchorPosition = 'right',
   onChange,
 }: ColorPickerProps) => {
   const [open, setOpen] = useState(false);
@@ -57,6 +60,7 @@ export const ColorPicker = ({
   return (
     <div className="relative inline-block text-left" ref={dropdownRef}>
       <button
+        type="button"
         ref={triggerRef}
         onClick={() => setOpen(!open)}
         className={`w-10 h-10 rounded transition-all cursor-pointer bg-${activeColor}`}
@@ -64,10 +68,19 @@ export const ColorPicker = ({
       />
 
       {open && (
-        <div className="absolute w-84 z-10 mt-2 flex flex-wrap gap-3 p-3 bg-white rounded-lg shadow animate-fade-down animate-duration-100">
+        <div
+          className={cn(
+            'absolute w-84 z-10 mt-2 flex flex-wrap gap-3 p-3 bg-white rounded-lg shadow animate-fade-down animate-duration-100',
+            {
+              'left-0': anchorPosition === 'left',
+              'right-0': anchorPosition === 'right',
+            }
+          )}
+        >
           {tailwindColors.map((color) => (
             <button
               key={color}
+              type="button"
               onClick={() => {
                 onChange(color);
                 setOpen(false);
