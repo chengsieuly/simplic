@@ -60,7 +60,11 @@ function CalendarHeader({
 
   return (
     <div className="flex items-center justify-between px-5 py-3">
-      <button onClick={decreaseMonth} disabled={prevMonthButtonDisabled}>
+      <button
+        type="button"
+        onClick={decreaseMonth}
+        disabled={prevMonthButtonDisabled}
+      >
         <ChevronLeftIcon className="w-4 cursor-pointer" />
       </button>
 
@@ -82,7 +86,11 @@ function CalendarHeader({
         </select>
       </div>
 
-      <button onClick={increaseMonth} disabled={nextMonthButtonDisabled}>
+      <button
+        type="button"
+        onClick={increaseMonth}
+        disabled={nextMonthButtonDisabled}
+      >
         <ChevronRightIcon className="w-4 cursor-pointer" />
       </button>
     </div>
