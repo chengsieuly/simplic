@@ -1,0 +1,15 @@
+.react-datepicker__header {
+  padding: 0;
+  background-color: white;
+  border: 0;
+  border-top-right-radius: var(--radius-xl) !important;
+  border-top-left-radius: var(--radius-xl) !important;
+}
+
+.react-datepicker__day-names {
+  font-weight: 600;
+}
+
+.react-datepicker__day--selected {
+  background-color: var(--color-primary-600);
+}
