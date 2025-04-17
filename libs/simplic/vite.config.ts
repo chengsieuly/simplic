@@ -14,9 +14,9 @@ export default defineConfig(() => ({
     nxViteTsPaths(),
     nxCopyAssetsPlugin([
       {
-        input: 'src',
-        output: '.',
-        glob: 'simplic.css',
+        input: 'src/stylesheets',
+        output: './stylesheets',
+        glob: '*.css',
       },
       '*.md',
     ]),

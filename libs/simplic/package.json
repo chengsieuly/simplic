@@ -1,6 +1,6 @@
 {
   "name": "@jangy/simplic",
-  "version": "0.0.62",
+  "version": "0.0.63",
   "main": "./index.js",
   "style": "./simplic.css",
   "exports": {
@@ -9,7 +9,8 @@
       "require": "./index.js",
       "types": "./index.d.ts"
     },
-    "./simplic.css": "./simplic.css"
+    "./stylesheets/simplic.css": "./stylesheets/simplic.css",
+    "./stylesheets/date-picker.css": "./stylesheets/date-picker.css"
   },
   "publishConfig": {
     "access": "public"

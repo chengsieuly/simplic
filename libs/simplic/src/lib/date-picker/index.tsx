@@ -7,8 +7,6 @@ import { range } from 'lodash';
 import _DatePicker, {
   ReactDatePickerCustomHeaderProps,
 } from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import './styles.css';
 
 interface DatePickerProps {
   selectedDate: Date;
