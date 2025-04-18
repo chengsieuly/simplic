@@ -79,7 +79,7 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
           <div className="py-1">
             {items.map((item, index) =>
               item.type === 'divider' ? (
-                <hr className="border-neutral-100" />
+                <hr key={index} className="border-neutral-100" />
               ) : (
                 <button
                   key={index}
