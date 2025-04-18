@@ -3,15 +3,11 @@ import { useId } from 'react';
 
 type ToggleSwitchProps = {
   label: string;
-  on?: boolean;
-  onChange?: (on: boolean) => void;
+  on: boolean;
+  onChange: (on: boolean) => void;
 };
 
-export const ToggleSwitch = ({
-  label,
-  on = false,
-  onChange,
-}: ToggleSwitchProps) => {
+export const ToggleSwitch = ({ label, on, onChange }: ToggleSwitchProps) => {
   const id = useId();
 
   const handleToggle = () => {
