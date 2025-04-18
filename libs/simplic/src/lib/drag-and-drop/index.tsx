@@ -1,12 +1,13 @@
 import { CloudArrowUpIcon } from '@heroicons/react/24/outline';
+import { XCircleIcon } from '@heroicons/react/24/solid';
 import cn from 'classnames';
-import { useEffect, useId, useRef, useState } from 'react';
+import { MouseEventHandler, useEffect, useId, useRef, useState } from 'react';
 import { preventDefaults } from '../utils/prevent-defaults';
 
 type DragAndDropImageShape = 'circle';
 
 interface DragAndDropProps {
-  onImageSelect: (file: File) => void;
+  onImageSelect: (file: File | null) => void;
   shape?: DragAndDropImageShape;
 }
 
@@ -45,6 +46,13 @@ export const DragAndDrop = ({ onImageSelect, shape }: DragAndDropProps) => {
       };
       reader.readAsDataURL(file);
     }
+  };
+
+  const handlRemoveImage: MouseEventHandler<HTMLButtonElement> = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    setPreview(null);
+    onImageSelect(null);
   };
 
   const highlight = () => setShouldHighlight(true);
@@ -94,7 +102,7 @@ export const DragAndDrop = ({ onImageSelect, shape }: DragAndDropProps) => {
   return (
     <div
       ref={dropAreaRef}
-      className="flex items-center justify-center w-full h-60 bg-gray-50"
+      className="group flex items-center justify-center w-full h-60 bg-gray-50"
     >
       <label
         htmlFor={id}
@@ -107,13 +115,22 @@ export const DragAndDrop = ({ onImageSelect, shape }: DragAndDropProps) => {
       >
         <div className="flex flex-col items-center justify-center h-full space-y-1">
           {preview ? (
-            <img
-              src={preview as string}
-              alt="image preview"
-              className={cn('h-full', {
-                'w-48 h-48 rounded-full object-cover': shape === 'circle',
-              })}
-            />
+            <div className="flex items-center justify-center relative w-48 h-48">
+              <img
+                src={preview as string}
+                alt="image preview"
+                className={cn('h-full', {
+                  'rounded-full object-cover': shape === 'circle',
+                })}
+              />
+              <button
+                type="button"
+                onClick={handlRemoveImage}
+                className="absolute top-0 flex h-full w-full justify-center items-center opacity-0 group-hover:opacity-70 transition-opacity"
+              >
+                <XCircleIcon className="w-10 cursor-pointer" />
+              </button>
+            </div>
           ) : (
             <>
               <CloudArrowUpIcon className="w-8" />
