@@ -14,6 +14,7 @@ export const Primary: Story = {
     anchorPosition: 'left',
     items: [
       { label: 'Profile', onClick: () => alert('Profile') },
+      { type: 'divider' },
       { label: 'Logout', onClick: () => alert('Logout') },
     ],
   },

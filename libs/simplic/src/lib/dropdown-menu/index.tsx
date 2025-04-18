@@ -8,8 +8,9 @@ import React, {
 } from 'react';
 
 type DropdownItem<T = Record<string, any>> = T & {
-  label: string;
-  onClick: (meta: DropdownItem) => void;
+  type?: 'action' | 'divider';
+  label?: string;
+  onClick?: (meta: DropdownItem) => void;
 };
 
 type DropdownMenuProps = {
@@ -65,7 +66,7 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
       {open && (
         <div
           className={cn(
-            'absolute z-20 mt-2 w-44 rounded-lg border border-gray-200 bg-white shadow-xs animate-fade-down animate-duration-100',
+            'absolute z-20 mt-2 w-44 rounded-lg border border-neutral-100 bg-white shadow-xs animate-fade-down animate-duration-100',
             {
               'right-0': anchorPosition === 'right',
               'left-0': anchorPosition === 'left',
@@ -76,19 +77,23 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
           onKeyDown={handleKeyDown}
         >
           <div className="py-1">
-            {items.map((item, index) => (
-              <button
-                key={index}
-                onClick={() => {
-                  item.onClick(item);
-                  setOpen(false);
-                }}
-                className="w-full px-4 py-2 text-left transition hover:bg-gray-100 focus-visible:bg-gray-100 focus-visible:outline-none cursor-pointer"
-                role="menuitem"
-              >
-                {item.label}
-              </button>
-            ))}
+            {items.map((item, index) =>
+              item.type === 'divider' ? (
+                <hr className="border-neutral-100" />
+              ) : (
+                <button
+                  key={index}
+                  onClick={() => {
+                    item.onClick?.(item);
+                    setOpen(false);
+                  }}
+                  className="w-full px-4 py-2 text-left transition hover:bg-gray-100 focus-visible:bg-gray-100 focus-visible:outline-none cursor-pointer"
+                  role="menuitem"
+                >
+                  {item.label}
+                </button>
+              )
+            )}
           </div>
         </div>
       )}
