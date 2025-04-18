@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { noop } from 'lodash';
 import { DragAndDrop } from './';
 
 const meta: Meta<typeof DragAndDrop> = {
@@ -19,6 +20,15 @@ export const Rounded: Story = {
     onImageSelect: () => {},
     shape: 'circle',
   },
+};
+
+export const Multiple = () => {
+  return (
+    <div className="flex gap-3">
+      <DragAndDrop onImageSelect={noop} />
+      <DragAndDrop onImageSelect={noop} />
+    </div>
+  );
 };
 
 export default meta;

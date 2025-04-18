@@ -1,6 +1,6 @@
 import { CloudArrowUpIcon } from '@heroicons/react/24/outline';
 import cn from 'classnames';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useId, useRef, useState } from 'react';
 import { preventDefaults } from '../utils/prevent-defaults';
 
 type DragAndDropImageShape = 'circle';
@@ -11,6 +11,7 @@ interface DragAndDropProps {
 }
 
 export const DragAndDrop = ({ onImageSelect, shape }: DragAndDropProps) => {
+  const id = useId();
   const dropAreaRef = useRef<HTMLDivElement>(null);
   const [shouldHighlight, setShouldHighlight] = useState(false);
   const [preview, setPreview] = useState<
@@ -96,7 +97,7 @@ export const DragAndDrop = ({ onImageSelect, shape }: DragAndDropProps) => {
       className="flex items-center justify-center w-full h-60 bg-gray-50"
     >
       <label
-        htmlFor="dropzone-file"
+        htmlFor={id}
         className={cn(
           'flex flex-col items-center justify-center w-full h-full border-2 border-gray-300 border-dashed rounded-lg cursor-pointer hover:bg-gray-100 p-5',
           {
@@ -125,7 +126,7 @@ export const DragAndDrop = ({ onImageSelect, shape }: DragAndDropProps) => {
           )}
         </div>
         <input
-          id="dropzone-file"
+          id={id}
           type="file"
           className="hidden"
           onChange={handleAvatarImageSelectionChange}
