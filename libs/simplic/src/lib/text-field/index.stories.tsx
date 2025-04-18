@@ -24,4 +24,13 @@ export const HiddenLabel: Story = {
   },
 };
 
+export const Required: Story = {
+  args: {
+    label: 'Your email',
+    alignment: 'left',
+    required: true,
+    value: '',
+  },
+};
+
 export default meta;

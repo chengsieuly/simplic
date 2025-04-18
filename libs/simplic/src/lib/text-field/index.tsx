@@ -15,12 +15,14 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
       <div className="flex flex-col space-y-2">
         <label
           htmlFor={id}
-          className={cn('text-sm text-center', {
+          className={cn({
             'sr-only': hideLabel,
+            'text-center': alignment === 'center',
+            'text-left': alignment === 'left',
           })}
         >
           {label}
-          {required && <span className="text-red-500">*</span>}
+          {required && <span className="text-red-500 ml-1">*</span>}
         </label>
         <input
           type="text"
