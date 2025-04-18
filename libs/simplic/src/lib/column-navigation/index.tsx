@@ -29,7 +29,7 @@ interface ColumnNavigationProps {
   items: ColumnNavigationItem[];
   activeItemId: string;
   title: string;
-  logo: React.ReactNode;
+  logo?: React.ReactNode;
   onItemClick: OnItemClickFn;
 }
 
@@ -46,15 +46,15 @@ export const ColumnNavigation = ({
     <Block
       as="nav"
       aria-labelledby={navigationTitleId}
-      className="bg-secondary-100 p-7 rounded-3xl"
+      className="p-7 rounded-3xl"
     >
       <div className="flex gap-3 items-center">
-        {logo}
+        {!!logo && logo}
         <h2 id={navigationTitleId} className="text-lg font-bold">
           {title}
         </h2>
       </div>
-      <hr className="border-t-secondary-200 mx-3 mt-5 mb-9" />
+      <hr className="border-t-neutral-100 mx-3 mt-5 mb-9" />
       <Section
         items={items}
         activeItemId={activeItemId}

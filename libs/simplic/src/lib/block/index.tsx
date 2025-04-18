@@ -12,7 +12,7 @@ export const Block = ({
   className,
   ...rest
 }: BlockProps<keyof JSX.IntrinsicElements>) => (
-  <As className={cn('bg-secondary-100 p-7 rounded-3xl', className)} {...rest}>
+  <As className={cn('bg-secondary-50 p-7 rounded-3xl', className)} {...rest}>
     {children}
   </As>
 );
