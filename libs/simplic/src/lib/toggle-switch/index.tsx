@@ -17,9 +17,7 @@ export const ToggleSwitch = ({ label, on, onChange }: ToggleSwitchProps) => {
 
   return (
     <div className="flex items-center gap-3">
-      <label htmlFor={id} className="font-medium">
-        {label}
-      </label>
+      <label htmlFor={id}>{label}</label>
       <button
         id={id}
         type="button"
