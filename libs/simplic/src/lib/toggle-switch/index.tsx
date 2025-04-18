@@ -22,6 +22,7 @@ export const ToggleSwitch = ({ label, on, onChange }: ToggleSwitchProps) => {
       </label>
       <button
         id={id}
+        type="button"
         role="switch"
         aria-checked={on}
         onClick={handleToggle}
