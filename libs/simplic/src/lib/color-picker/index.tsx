@@ -4,28 +4,27 @@ import { useEffect, useRef, useState } from 'react';
 const SHADE = 200;
 
 const tailwindColors = [
-  `red-${SHADE}`,
-  `orange-${SHADE}`,
-  `amber-${SHADE}`,
-  `yellow-${SHADE}`,
-  `lime-${SHADE}`,
-  `green-${SHADE}`,
-  `emerald-${SHADE}`,
-  `teal-${SHADE}`,
-  `cyan-${SHADE}`,
-  `sky-${SHADE}`,
-  `blue-${SHADE}`,
+  `neutral-${SHADE}`,
+  `zinc-${SHADE}`,
+  `gray-${SHADE}`,
+  `slate-${SHADE}`,
   `indigo-${SHADE}`,
   `violet-${SHADE}`,
   `purple-${SHADE}`,
   `fuchsia-${SHADE}`,
   `pink-${SHADE}`,
   `rose-${SHADE}`,
-  `neutral-${SHADE}`,
-  `zinc-${SHADE}`,
-  `gray-${SHADE}`,
-  `stone-${SHADE}`,
-  `slate-${SHADE}`,
+  `red-${SHADE}`,
+  `blue-${SHADE}`,
+  `cyan-${SHADE}`,
+  `teal-${SHADE}`,
+  `emerald-${SHADE}`,
+  `green-${SHADE}`,
+  `sky-${SHADE}`,
+  `orange-${SHADE}`,
+  `amber-${SHADE}`,
+  `lime-${SHADE}`,
+  `yellow-${SHADE}`,
 ];
 
 interface ColorPickerProps {
@@ -73,7 +72,7 @@ export const ColorPicker = ({
       {open && (
         <div
           className={cn(
-            'absolute w-84 z-10 mt-2 flex flex-wrap gap-3 p-3 bg-white rounded-lg shadow animate-fade-down animate-duration-100',
+            'absolute w-66 z-10 mt-2 flex flex-wrap gap-3 p-3 bg-white rounded-lg shadow animate-fade-down animate-duration-100',
             {
               'left-0': anchorPosition === 'left',
               'right-0': anchorPosition === 'right',

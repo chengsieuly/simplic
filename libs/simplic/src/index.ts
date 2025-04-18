@@ -4,6 +4,7 @@ export * from './lib/button';
 export * from './lib/carousel';
 export * from './lib/color-picker';
 export * from './lib/column-navigation';
+export * from './lib/date-input';
 export * from './lib/date-picker';
 export * from './lib/drag-and-drop';
 export * from './lib/dropdown-menu';

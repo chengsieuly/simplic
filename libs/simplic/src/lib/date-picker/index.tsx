@@ -4,13 +4,23 @@ import {
   ChevronRightIcon,
 } from '@heroicons/react/24/outline';
 import { range } from 'lodash';
+import { useEffect, useState } from 'react';
 import _DatePicker, {
   ReactDatePickerCustomHeaderProps,
 } from 'react-datepicker';
+import { DateInput } from '../date-input';
+import { isValidDate } from '../utils';
 
 interface DatePickerProps {
   selectedDate: Date;
   minDate?: Date;
+  onChange: (date: Date) => void;
+}
+
+interface InlineDatePickerProps extends DatePickerProps {
+  selectedDate: Date;
+  minDate?: Date;
+  label: string;
   onChange: (date: Date) => void;
 }
 
@@ -29,10 +39,56 @@ export const DatePicker = ({
     dateFormat="MMMM d, yyyy"
     onChange={(date) => onChange(date || new Date())}
     minDate={minDate}
-    className="pl-10! transition-all duration-300"
+    className="pl-9! transition-all duration-300"
     calendarClassName="border border-neutral-200! rounded-xl!"
   />
 );
+
+export const InlineDatePicker = ({
+  selectedDate,
+  onChange,
+  minDate,
+  label,
+}: InlineDatePickerProps) => {
+  const month = selectedDate.getMonth() + 1;
+  const day = selectedDate.getDate();
+  const year = selectedDate.getFullYear();
+
+  const [dateString, setDateString] = useState(`${month}/${day}/${year}`);
+
+  const handleDateInputChange = (value: string) => {
+    const valid = isValidDate(value, minDate);
+    if (valid) {
+      onChange(new Date(value));
+    }
+    setDateString(value);
+  };
+
+  useEffect(() => {
+    const month = selectedDate.getMonth() + 1;
+    const day = selectedDate.getDate();
+    const year = selectedDate.getFullYear();
+    setDateString(`${month}/${day}/${year}`);
+  }, [selectedDate]);
+
+  return (
+    <div className="space-y-1">
+      <DateInput
+        label={label}
+        value={dateString}
+        onChange={handleDateInputChange}
+      />
+      <_DatePicker
+        renderCustomHeader={CalendarHeader}
+        selected={selectedDate}
+        onChange={(date) => onChange(date || new Date())}
+        minDate={minDate}
+        calendarClassName="border border-neutral-200! rounded-xl!"
+        inline
+      />
+    </div>
+  );
+};
 
 function CalendarHeader({
   date,
@@ -59,7 +115,7 @@ function CalendarHeader({
   ];
 
   return (
-    <div className="flex items-center justify-between px-5 py-3">
+    <div className="flex items-center justify-between p-3">
       <button
         type="button"
         onClick={decreaseMonth}
