@@ -8,7 +8,6 @@ import {
   useId,
   useState,
 } from 'react';
-import { Block } from '../block';
 
 type OnItemClickFn = (item: ColumnNavigationItem) => void;
 
@@ -28,39 +27,24 @@ export interface ColumnNavigationItem {
 interface ColumnNavigationProps {
   items: ColumnNavigationItem[];
   activeItemId: string;
-  title: string;
-  logo?: React.ReactNode;
   onItemClick: OnItemClickFn;
 }
 
 export const ColumnNavigation = ({
   items,
   activeItemId,
-  title,
-  logo,
   onItemClick,
 }: ColumnNavigationProps) => {
   const navigationTitleId = useId();
 
   return (
-    <Block
-      as="nav"
-      aria-labelledby={navigationTitleId}
-      className="p-7 rounded-3xl"
-    >
-      <div className="flex gap-3 items-center">
-        {!!logo && logo}
-        <h2 id={navigationTitleId} className="text-lg font-bold">
-          {title}
-        </h2>
-      </div>
-      <hr className="border-t-neutral-100 mx-3 mt-5 mb-9" />
+    <nav aria-labelledby={navigationTitleId}>
       <Section
         items={items}
         activeItemId={activeItemId}
         onItemClick={onItemClick}
       />
-    </Block>
+    </nav>
   );
 };
 
@@ -113,8 +97,8 @@ const SectionItem = ({
         className={cn(
           'flex justify-between transitions duration-300 ease-in-out items-center p-3 rounded-3xl cursor-pointer',
           {
-            'bg-secondary-950 text-white': activeItemId === item.id,
-            'hover:bg-secondary-200': activeItemId !== item.id,
+            'bg-black text-white': activeItemId === item.id,
+            'hover:bg-neutral-100': activeItemId !== item.id,
           }
         )}
         onClick={handleExpandedClick}
@@ -150,7 +134,7 @@ const SectionItem = ({
       {item.items?.length && (
         <div
           className={cn(
-            'transitions duration-300 ease-in-out mt-3 border-l-2 border-secondary-950 ml-6',
+            'transitions duration-300 ease-in-out mt-3 border-l-2 border-black ml-6',
             {
               'max-h-[2000px] overflow-hidden': expanded,
               'max-h-0 overflow-hidden': !expanded,
