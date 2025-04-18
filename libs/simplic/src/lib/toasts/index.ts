@@ -23,7 +23,7 @@ const showToast = ({ message = '', type = 'success' }) => {
   toast.tabIndex = 0;
 
   toast.className = cn(
-    'px-4 py-3 rounded-lg shadow-md text-white animate-in fade-in slide-in-from-right duration-300',
+    'px-4 py-3 rounded-lg shadow-md text-white animate-jump-in animate-duration-300',
     {
       'bg-green-600': type === 'success',
       'bg-red-600': type === 'critical',
@@ -34,8 +34,8 @@ const showToast = ({ message = '', type = 'success' }) => {
   container.appendChild(toast);
 
   setTimeout(() => {
-    toast.classList.remove('animate-in', 'fade-in', 'slide-in-from-right');
-    toast.classList.add('animate-out', 'fade-out', 'slide-out-to-right');
+    toast.classList.remove('animate-jump-in');
+    toast.classList.add('animate-jump-out');
 
     toast.addEventListener('animationend', () => {
       toast.remove();
