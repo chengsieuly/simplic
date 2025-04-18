@@ -28,6 +28,9 @@ export const Button = ({
             variant === 'secondary',
         },
         {
+          'bg-primary-400!': variant === 'primary' && disabled,
+        },
+        {
           'cursor-not-allowed': disabled,
         },
         {
