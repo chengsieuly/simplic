@@ -120,7 +120,7 @@ export const DragAndDrop = ({ onImageSelect, shape }: DragAndDropProps) => {
                 src={preview as string}
                 alt="image preview"
                 className={cn('h-full', {
-                  'rounded-full object-cover': shape === 'circle',
+                  'rounded-full object-cover w-full': shape === 'circle',
                 })}
               />
               <button
