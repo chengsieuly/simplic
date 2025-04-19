@@ -1,6 +1,6 @@
 import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
-import { RemovableTag, Tag } from './';
+import { ActionTag, AddTag, RemovableTag, Tag } from './';
 
 const meta: Meta<typeof Tag> = {
   component: Tag,
@@ -22,8 +22,14 @@ export const Primary: Story = {
   },
 };
 
-export const Remove = () => {
-  return <RemovableTag onRemove={action('clicked')}>japan</RemovableTag>;
+export const Action = () => {
+  return (
+    <div className="flex gap-3">
+      <ActionTag onClick={action('clicked')}>japan</ActionTag>
+      <RemovableTag onClick={action('remove')}>cups</RemovableTag>
+      <AddTag onClick={action('add')}>travel</AddTag>
+    </div>
+  );
 };
 
 export default meta;

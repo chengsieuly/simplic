@@ -1,9 +1,15 @@
+import { PlusIcon } from '@heroicons/react/24/outline';
 import { XMarkIcon } from '@heroicons/react/24/solid';
 import cn from 'classnames';
 
 interface TagProps {
   children: React.ReactNode;
   color?: string;
+}
+
+interface ActionTagProps extends TagProps {
+  icon?: React.ReactNode;
+  onClick: () => void;
 }
 
 export const Tag = ({ children, color = 'blue-200' }: TagProps) => (
@@ -17,26 +23,52 @@ export const Tag = ({ children, color = 'blue-200' }: TagProps) => (
   </div>
 );
 
-export const RemovableTag = ({
+export const ActionTag = ({
   children,
   color = 'blue-200',
-  onRemove,
-}: TagProps & { onRemove: () => void }) => {
+  icon,
+  onClick,
+}: ActionTagProps) => {
   return (
     <div
       className={cn(
-        'flex items-center gap-1 text-xs font-semibold py-1 pl-3 pr-5 rounded-3xl w-fit',
-        `bg-${color}`
+        'flex items-center gap-1 text-xs font-semibold py-1 rounded-3xl w-fit',
+        `bg-${color}`,
+        {
+          'pl-3 pr-5': !!icon,
+          'px-3': !icon,
+        }
       )}
     >
-      <button
-        type="button"
-        className="cursor-pointer w-5 h-5"
-        onClick={onRemove}
-      >
-        <XMarkIcon className="w-4" />
-      </button>
+      {!!icon && (
+        <button
+          type="button"
+          className="cursor-pointer w-5 h-5"
+          onClick={onClick}
+        >
+          <div className="w-4 h-4">{icon}</div>
+        </button>
+      )}
       {children}
     </div>
+  );
+};
+
+export const RemovableTag = ({
+  children,
+  ...rest
+}: Omit<ActionTagProps, 'icon'>) => {
+  return (
+    <ActionTag {...rest} icon={<XMarkIcon />}>
+      {children}
+    </ActionTag>
+  );
+};
+
+export const AddTag = ({ children, ...rest }: Omit<ActionTagProps, 'icon'>) => {
+  return (
+    <ActionTag {...rest} icon={<PlusIcon />}>
+      {children}
+    </ActionTag>
   );
 };
