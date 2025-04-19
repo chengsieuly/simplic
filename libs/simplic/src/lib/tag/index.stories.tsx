@@ -16,7 +16,7 @@ export const Primary: Story = {
   argTypes: {
     color: {
       control: { type: 'select' },
-      options: ['bg-green-200', 'bg-fuchsia-200', 'bg-stone-200'],
+      options: ['green-200', 'fuchsia-200', 'stone-200'],
       description: 'Select tag color',
     },
   },
