@@ -1,6 +1,7 @@
 import { XMarkIcon } from '@heroicons/react/24/solid';
 import cn from 'classnames';
 import { useEffect } from 'react';
+import { IconButton } from '../button';
 
 interface ModalProps {
   open: boolean;
@@ -50,10 +51,13 @@ export const Modal = ({ open, close, children, transparent }: ModalProps) => {
           }
         )}
       >
-        <div className="w-full text-right p-3">
-          <button className="text-gray-600 hover:text-black" onClick={close}>
-            <XMarkIcon className="w-5 " />
-          </button>
+        <div className="p-3">
+          <IconButton
+            className="ml-auto"
+            size="small"
+            icon={<XMarkIcon />}
+            onClick={close}
+          />
         </div>
         <div>{children}</div>
       </div>
