@@ -36,6 +36,14 @@ export const Secondary: Story = {
   },
 };
 
+export const Critical: Story = {
+  args: {
+    children: 'Click me',
+    variant: 'critical',
+    onClick: action('clicked'),
+  },
+};
+
 export const Disabled: Story = {
   args: {
     disabled: true,

@@ -2,7 +2,7 @@ import cn from 'classnames';
 import { ButtonHTMLAttributes } from 'react';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary';
+  variant?: 'primary' | 'secondary' | 'critical';
 }
 
 interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -29,11 +29,18 @@ export const Button = ({
             variant === 'primary',
         },
         {
-          'border border-secondary-600 hover:bg-secondary-100':
+          'border border-neutral-600 hover:bg-neutral-100':
             variant === 'secondary',
         },
         {
+          'bg-critical-500 text-white hover:bg-critical-400':
+            variant === 'critical',
+        },
+        {
           'bg-primary-400!': variant === 'primary' && disabled,
+        },
+        {
+          'bg-critical-300!': variant === 'critical' && disabled,
         },
         {
           'cursor-not-allowed': disabled,
