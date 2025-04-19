@@ -23,7 +23,7 @@ export const RemovableTag = ({
     <div
       className={cn(
         'flex items-center gap-1 text-xs font-semibold py-1 pl-3 pr-5 rounded-3xl w-fit',
-        color
+        `bg-${color}`
       )}
     >
       <button
