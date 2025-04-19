@@ -1,8 +1,9 @@
+import { PencilIcon } from '@heroicons/react/24/outline';
 import { action } from '@storybook/addon-actions';
 import { expect, jest } from '@storybook/jest';
 import type { Meta, StoryObj } from '@storybook/react';
 import { userEvent, within } from '@storybook/testing-library';
-import { Button } from '.';
+import { Button, IconButton } from '.';
 
 const meta: Meta<typeof Button> = {
   component: Button,
@@ -43,5 +44,13 @@ export const Disabled: Story = {
     onClick: action('clicked'),
   },
 };
+
+export const ButtonAsIcon = () => (
+  <div className="flex flex-col gap-5">
+    <IconButton size="small" icon={<PencilIcon />} />
+    <IconButton size="medium" icon={<PencilIcon />} />
+    <IconButton size="large" icon={<PencilIcon />} />
+  </div>
+);
 
 export default meta;

@@ -5,6 +5,11 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary';
 }
 
+interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  icon: React.ReactNode;
+  size?: 'small' | 'medium' | 'large';
+}
+
 export const Button = ({
   className,
   children,
@@ -43,3 +48,34 @@ export const Button = ({
     </button>
   );
 };
+
+export const IconButton = ({
+  icon,
+  size = 'medium',
+  className,
+  ...rest
+}: IconButtonProps) => (
+  <button
+    type="button"
+    {...rest}
+    className={cn(
+      'flex items-center justify-center cursor-pointer w-9 h-9 hover:bg-neutral-100 rounded-lg',
+      {
+        'w-8 h-8': size === 'small',
+        'w-9 h-9': size === 'medium',
+        'w-10 h-10': size === 'large',
+      },
+      className
+    )}
+  >
+    <div
+      className={cn({
+        'w-5 h-5': size === 'small',
+        'w-6 h-6': size === 'medium',
+        'w-7 h-7': size === 'large',
+      })}
+    >
+      {icon}
+    </div>
+  </button>
+);
