@@ -6,7 +6,7 @@ interface TagProps {
   color?: string;
 }
 
-export const Tag = ({ children, color = 'bg-blue-200' }: TagProps) => (
+export const Tag = ({ children, color = 'blue-200' }: TagProps) => (
   <div
     className={cn(
       'text-xs font-semibold py-1 px-5 rounded-3xl w-fit',
@@ -19,7 +19,7 @@ export const Tag = ({ children, color = 'bg-blue-200' }: TagProps) => (
 
 export const RemovableTag = ({
   children,
-  color = 'bg-blue-200',
+  color = 'blue-200',
   onRemove,
 }: TagProps & { onRemove: () => void }) => {
   return (
