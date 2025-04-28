@@ -44,6 +44,7 @@ export const PillsNavigation = ({
         items={items}
         activeItemId={activeItemId}
         onItemClick={onItemClick}
+        className="justify-center"
       />
     </nav>
   );
