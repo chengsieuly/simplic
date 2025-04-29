@@ -57,7 +57,7 @@ export const ActionTag = ({
     if (ref.current) {
       setBgColorHex(getBackgroundColorHex(ref.current));
     }
-  }, [ref.current]);
+  }, [ref.current, color]);
 
   const textColor = bgColorHex ? getTextColorFromOklch(bgColorHex) : '';
 
@@ -82,6 +82,7 @@ export const ActionTag = ({
       <button
         type="button"
         className="cursor-pointer"
+        style={{ color: textColor ? textColor : 'initial' }}
         onClick={handleIconClick}
       >
         {!!icon && <div className="w-4 h-4">{icon}</div>}

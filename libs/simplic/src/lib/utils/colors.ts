@@ -11,7 +11,8 @@ export const getTextColorFromOklch = (
     /oklch\(\s*([\d.]+)\s+([\d.]+)\s+([\d.]+)\s*\)/
   );
   if (!match) {
-    throw new Error('Invalid OKLCH string format');
+    console.error('Invalid OKLCH string format');
+    return 'black';
   }
 
   const l = parseFloat(match[1]);
