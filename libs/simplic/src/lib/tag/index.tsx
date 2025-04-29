@@ -1,6 +1,9 @@
 import { PlusIcon } from '@heroicons/react/24/outline';
 import { XMarkIcon } from '@heroicons/react/24/solid';
 import cn from 'classnames';
+import { noop } from 'lodash';
+import { useEffect, useRef, useState } from 'react';
+import { getBackgroundColorHex, getTextColorFromOklch } from '../utils/colors';
 
 interface TagProps {
   children: React.ReactNode;
@@ -9,29 +12,64 @@ interface TagProps {
 
 interface ActionTagProps extends TagProps {
   icon?: React.ReactNode;
-  onClick: () => void;
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  iconClickOnly?: boolean;
 }
 
-export const Tag = ({ children, color = 'blue-200' }: TagProps) => (
-  <div
-    className={cn(
-      'text-xs font-semibold py-1 px-5 rounded-3xl w-fit',
-      `bg-${color}`
-    )}
-  >
-    {children}
-  </div>
-);
+export const Tag = ({ children, color = 'blue-200' }: TagProps) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const [bgColorHex, setBgColorHex] = useState('');
+
+  useEffect(() => {
+    if (ref.current) {
+      setBgColorHex(getBackgroundColorHex(ref.current));
+    }
+  }, [ref.current]);
+
+  const textColor = bgColorHex ? getTextColorFromOklch(bgColorHex) : '';
+
+  return (
+    <div
+      ref={ref}
+      className={cn(
+        'text-xs font-semibold py-1 px-5 rounded-3xl w-fit',
+        `bg-${color}`
+      )}
+    >
+      <span style={{ color: textColor ? textColor : 'initial' }}>
+        {children}
+      </span>
+    </div>
+  );
+};
 
 export const ActionTag = ({
   children,
   color = 'blue-200',
   icon,
   onClick,
+  iconClickOnly,
 }: ActionTagProps) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const [bgColorHex, setBgColorHex] = useState('');
+
+  useEffect(() => {
+    if (ref.current) {
+      setBgColorHex(getBackgroundColorHex(ref.current));
+    }
+  }, [ref.current]);
+
+  const textColor = bgColorHex ? getTextColorFromOklch(bgColorHex) : '';
+
+  const handleIconClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    onClick(e);
+  };
+
   return (
-    <button
-      onClick={onClick}
+    <div
+      ref={ref}
+      onClick={!iconClickOnly ? handleIconClick : noop}
       className={cn(
         'flex items-center gap-1 text-xs font-semibold py-1 rounded-3xl w-fit cursor-pointer',
         `bg-${color}`,
@@ -41,9 +79,17 @@ export const ActionTag = ({
         }
       )}
     >
-      {!!icon && <div className="w-4 h-4">{icon}</div>}
-      {children}
-    </button>
+      <button
+        type="button"
+        className="cursor-pointer"
+        onClick={handleIconClick}
+      >
+        {!!icon && <div className="w-4 h-4">{icon}</div>}
+      </button>
+      <span style={{ color: textColor ? textColor : 'initial' }}>
+        {children}
+      </span>
+    </div>
   );
 };
 

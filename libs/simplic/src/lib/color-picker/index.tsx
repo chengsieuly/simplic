@@ -1,47 +1,42 @@
 import cn from 'classnames';
 import { useEffect, useRef, useState } from 'react';
 
-const SHADE = 200;
+const SHADES = [100, 200, 300, 400, 500, 600, 700];
 
-const tailwindColors = [
-  `neutral-${SHADE}`,
-  `zinc-${SHADE}`,
-  `gray-${SHADE}`,
-  `slate-${SHADE}`,
-  `indigo-${SHADE}`,
-  `violet-${SHADE}`,
-  `purple-${SHADE}`,
-  `fuchsia-${SHADE}`,
-  `pink-${SHADE}`,
-  `rose-${SHADE}`,
-  `red-${SHADE}`,
-  `blue-${SHADE}`,
-  `cyan-${SHADE}`,
-  `teal-${SHADE}`,
-  `emerald-${SHADE}`,
-  `green-${SHADE}`,
-  `sky-${SHADE}`,
-  `orange-${SHADE}`,
-  `amber-${SHADE}`,
-  `lime-${SHADE}`,
-  `yellow-${SHADE}`,
+const BASE_COLORS = [
+  'neutral',
+  'red',
+  'orange',
+  'yellow',
+  'green',
+  'blue',
+  'indigo',
+  'violet',
 ];
+
+const tailwindColors = BASE_COLORS.reduce((all, color) => {
+  const colors = SHADES.map((shade) => `${color}-${shade}`);
+  all.push(...colors);
+  return all;
+}, [] as string[]);
 
 interface ColorPickerProps {
   color: string;
   anchorPosition?: 'left' | 'right';
   onChange: (color: string) => void;
+  trigger?: React.ReactNode;
 }
 
 export const ColorPicker = ({
-  color = `blue-${SHADE}`,
+  color = `blue-${SHADES[0]}`,
   anchorPosition = 'right',
+  trigger,
   onChange,
 }: ColorPickerProps) => {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
-  const activeColor = color || `blue-${SHADE}`;
+  const activeColor = color || `blue-${SHADES[0]}`;
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -58,16 +53,22 @@ export const ColorPicker = ({
 
   return (
     <div
-      className="relative inline-block text-left w-10 h-10"
+      className="relative inline-block text-left leading-none"
       ref={dropdownRef}
     >
-      <button
-        type="button"
-        ref={triggerRef}
-        onClick={() => setOpen(!open)}
-        className={`w-10 h-10 rounded transition-all cursor-pointer bg-${activeColor}`}
-        aria-label="Select color"
-      />
+      {trigger ? (
+        <div aria-haspopup aria-expanded={open} onClick={() => setOpen(!open)}>
+          {trigger}
+        </div>
+      ) : (
+        <button
+          type="button"
+          ref={triggerRef}
+          onClick={() => setOpen(!open)}
+          className={`w-10 h-10 rounded transition-all cursor-pointer bg-${activeColor}`}
+          aria-label="Select color"
+        />
+      )}
 
       {open && (
         <div
