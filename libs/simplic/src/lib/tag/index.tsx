@@ -30,9 +30,10 @@ export const ActionTag = ({
   onClick,
 }: ActionTagProps) => {
   return (
-    <div
+    <button
+      onClick={onClick}
       className={cn(
-        'flex items-center gap-1 text-xs font-semibold py-1 rounded-3xl w-fit',
+        'flex items-center gap-1 text-xs font-semibold py-1 rounded-3xl w-fit cursor-pointer',
         `bg-${color}`,
         {
           'pl-3 pr-5': !!icon,
@@ -40,17 +41,9 @@ export const ActionTag = ({
         }
       )}
     >
-      {!!icon && (
-        <button
-          type="button"
-          className="cursor-pointer w-5 h-5"
-          onClick={onClick}
-        >
-          <div className="w-4 h-4">{icon}</div>
-        </button>
-      )}
+      {!!icon && <div className="w-4 h-4">{icon}</div>}
       {children}
-    </div>
+    </button>
   );
 };
 

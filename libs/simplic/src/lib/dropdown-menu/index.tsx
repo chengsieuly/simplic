@@ -61,7 +61,7 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
   });
 
   return (
-    <div className="relative inline-block text-left">
+    <div className="relative inline-block text-left text-base leading-none">
       {clonedTrigger}
       {open && (
         <div

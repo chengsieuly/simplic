@@ -1,6 +1,6 @@
 {
   "name": "@jangy/simplic",
-  "version": "0.0.81",
+  "version": "0.0.82",
   "main": "./index.js",
   "style": "./simplic.css",
   "exports": {
