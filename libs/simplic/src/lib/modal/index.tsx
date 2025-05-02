@@ -9,7 +9,6 @@ interface ModalProps {
   close: () => void;
   transparent?: boolean;
   title?: string;
-  footer?: React.ReactNode;
 }
 
 interface ModalBodyProps {
@@ -28,7 +27,6 @@ export const Modal = ({
   children,
   transparent,
   title,
-  footer,
 }: ModalProps) => {
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
@@ -71,7 +69,11 @@ export const Modal = ({
         )}
       >
         <div className="flex gap-3 justify-between items-center p-3">
-          {title && <h1 className="font-semibold text-lg">{title}</h1>}
+          {title ? (
+            <h1 className="font-semibold text-lg">{title}</h1>
+          ) : (
+            <span />
+          )}
           <IconButton size="small" icon={<XMarkIcon />} onClick={close} />
         </div>
         {children}
