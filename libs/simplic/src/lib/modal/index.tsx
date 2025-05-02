@@ -8,9 +8,28 @@ interface ModalProps {
   children: React.ReactNode;
   close: () => void;
   transparent?: boolean;
+  title?: string;
+  footer?: React.ReactNode;
 }
 
-export const Modal = ({ open, close, children, transparent }: ModalProps) => {
+interface ModalBodyProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
+interface ModalFooterProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
+export const Modal = ({
+  open,
+  close,
+  children,
+  transparent,
+  title,
+  footer,
+}: ModalProps) => {
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
       close();
@@ -44,23 +63,36 @@ export const Modal = ({ open, close, children, transparent }: ModalProps) => {
     >
       <div
         className={cn(
-          'w-3/4 sm:w-1/2 transitions ease-in-out duration-200 bg-white rounded-md shadow-lg transform',
+          'w-3/4 sm:w-1/2 max-h-[90%] overflow-y-auto transitions ease-in-out duration-200 bg-white rounded-md shadow-lg transform',
           {
             'scale-0 opacity-0': !open,
             'scale-100 opacity-100': open,
           }
         )}
       >
-        <div className="p-3">
-          <IconButton
-            className="ml-auto"
-            size="small"
-            icon={<XMarkIcon />}
-            onClick={close}
-          />
+        <div className="flex gap-3 justify-between items-center p-3">
+          {title && <h1 className="font-semibold text-lg">{title}</h1>}
+          <IconButton size="small" icon={<XMarkIcon />} onClick={close} />
         </div>
-        <div>{children}</div>
+        {children}
       </div>
+    </div>
+  );
+};
+
+export const ModalBody = ({ children, className }: ModalBodyProps) => (
+  <div className={cn('p-3', className)}>{children}</div>
+);
+
+export const ModalFooter = ({ children, className }: ModalFooterProps) => {
+  return (
+    <div
+      className={cn(
+        'flex justify-center items-center gap-3 sticky bottom-0 bg-white z-10 border-t border-neutral-50 p-3',
+        className
+      )}
+    >
+      {children}
     </div>
   );
 };

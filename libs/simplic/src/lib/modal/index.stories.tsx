@@ -1,6 +1,7 @@
 import type { Meta } from '@storybook/react';
 import { useState } from 'react';
-import { Modal } from '.';
+import { Modal, ModalBody, ModalFooter } from '.';
+import { Button } from '../button';
 
 const meta: Meta<typeof Modal> = {
   component: Modal,
@@ -15,15 +16,46 @@ export const Primary = () => {
       <button className="text-3xl" onClick={() => setOpen(true)}>
         Open modal
       </button>
-      <Modal open={open} close={() => setOpen(false)}>
-        <h2>Hello</h2>
-        <ul>
-          <li>Lorem ipsum</li>
-          <li>Lorem ipsum</li>
-          <li>Lorem ipsum</li>
-          <li>Lorem ipsum</li>
-          <li>Lorem ipsum</li>
-        </ul>
+      <Modal title="Hello world!" open={open} close={() => setOpen(false)}>
+        <ModalBody>
+          <ul>
+            <li>Lorem ipsum</li>
+            <li>Lorem ipsum</li>
+            <li>Lorem ipsum</li>
+            <li>Lorem ipsum</li>
+            <li>Lorem ipsum</li>
+            <li>Lorem ipsum</li>
+            <li>Lorem ipsum</li>
+            <li>Lorem ipsum</li>
+            <li>Lorem ipsum</li>
+            <li>Lorem ipsum</li>
+            <li>Lorem ipsum</li>
+            <li>Lorem ipsum</li>
+            <li>Lorem ipsum</li>
+            <li>Lorem ipsum</li>
+            <li>Lorem ipsum</li>
+            <li>Lorem ipsum</li>
+            <li>Lorem ipsum</li>
+            <li>Lorem ipsum</li>
+            <li>Lorem ipsum</li>
+            <li>Lorem ipsum</li>
+            <li>Lorem ipsum</li>
+            <li>Lorem ipsum</li>
+            <li>Lorem ipsum</li>
+            <li>Lorem ipsum</li>
+            <li>Lorem ipsum</li>
+            <li>Lorem ipsum</li>
+            <li>Lorem ipsum</li>
+            <li>Lorem ipsum</li>
+            <li>Lorem ipsum</li>
+            <li>Lorem ipsum</li>
+            <li>Last</li>
+          </ul>
+        </ModalBody>
+        <ModalFooter>
+          <Button>Hello</Button>
+          <Button>Hello</Button>
+        </ModalFooter>
       </Modal>
     </div>
   );
