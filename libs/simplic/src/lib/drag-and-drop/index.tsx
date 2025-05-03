@@ -9,9 +9,14 @@ type DragAndDropImageShape = 'circle';
 interface DragAndDropProps {
   onImageSelect: (file: File | null) => void;
   shape?: DragAndDropImageShape;
+  file?: File;
 }
 
-export const DragAndDrop = ({ onImageSelect, shape }: DragAndDropProps) => {
+export const DragAndDrop = ({
+  onImageSelect,
+  shape,
+  file,
+}: DragAndDropProps) => {
   const id = useId();
   const dropAreaRef = useRef<HTMLDivElement>(null);
   const [shouldHighlight, setShouldHighlight] = useState(false);
@@ -98,6 +103,18 @@ export const DragAndDrop = ({ onImageSelect, shape }: DragAndDropProps) => {
       };
     }
   }, [dropAreaRef.current]);
+
+  useEffect(() => {
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        setPreview(e.target?.result);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      setPreview(null);
+    }
+  }, [file]);
 
   return (
     <div
