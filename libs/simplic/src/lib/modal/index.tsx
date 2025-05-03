@@ -61,7 +61,7 @@ export const Modal = ({
     >
       <div
         className={cn(
-          'w-3/4 sm:w-1/2 max-h-[90%] overflow-y-auto transitions ease-in-out duration-200 bg-white rounded-md shadow-lg transform',
+          'flex flex-col w-full md:w-3/4 lg:w-1/2 h-full md:h-[90%] transitions ease-in-out duration-200 bg-white rounded-md shadow-lg transform',
           {
             'scale-0 opacity-0': !open,
             'scale-100 opacity-100': open,
@@ -83,7 +83,9 @@ export const Modal = ({
 };
 
 export const ModalBody = ({ children, className }: ModalBodyProps) => (
-  <div className={cn('p-3', className)}>{children}</div>
+  <div className={cn('pt-0 pr-8 pb-8 pl-8 flex-1 overflow-auto', className)}>
+    {children}
+  </div>
 );
 
 export const ModalFooter = ({ children, className }: ModalFooterProps) => {
