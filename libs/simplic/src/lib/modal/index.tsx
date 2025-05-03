@@ -61,7 +61,7 @@ export const Modal = ({
     >
       <div
         className={cn(
-          'flex flex-col w-full md:w-3/4 lg:w-1/2 h-full md:h-[90%] transitions ease-in-out duration-200 bg-white rounded-md shadow-lg transform',
+          'flex flex-col w-full md:w-3/4 lg:w-1/2 h-full md:h-auto md:max-h-[90%] transitions ease-in-out duration-200 bg-white rounded-md shadow-lg transform',
           {
             'scale-0 opacity-0': !open,
             'scale-100 opacity-100': open,
