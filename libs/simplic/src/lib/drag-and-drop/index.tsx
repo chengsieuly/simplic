@@ -9,7 +9,7 @@ type DragAndDropImageShape = 'circle';
 interface DragAndDropProps {
   onImageSelect: (file: File | null) => void;
   shape?: DragAndDropImageShape;
-  file?: File;
+  file?: File | null;
 }
 
 export const DragAndDrop = ({
