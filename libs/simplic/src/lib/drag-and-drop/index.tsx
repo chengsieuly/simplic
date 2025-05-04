@@ -171,6 +171,7 @@ export const DragAndDrop = ({
 
   // load bg module
   useEffect(() => {
+    if (typeof window === 'undefined') return;
     const load = async () => {
       const module = await import('@imgly/background-removal');
       setBgModule(module);
