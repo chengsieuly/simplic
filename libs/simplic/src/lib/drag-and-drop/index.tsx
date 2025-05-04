@@ -4,7 +4,6 @@ import {
   SparklesIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline';
-import { Config, preload, removeBackground } from '@imgly/background-removal';
 import cn from 'classnames';
 import { MouseEventHandler, useEffect, useId, useRef, useState } from 'react';
 import { IconButton } from '../button';
@@ -28,6 +27,9 @@ export const DragAndDrop = ({
 }: DragAndDropProps) => {
   const id = useId();
   const dropAreaRef = useRef<HTMLDivElement>(null);
+  const [bgModule, setBgModule] = useState<
+    null | typeof import('@imgly/background-removal')
+  >(null);
   const [shouldHighlight, setShouldHighlight] = useState(false);
   const [beforeRemovingBgPreview, setBeforeRemovingBgPreview] = useState<
     string | ArrayBuffer | null | undefined
@@ -37,7 +39,7 @@ export const DragAndDrop = ({
   >();
   const [isRemovingBg, setIsRemovingBg] = useState(false);
 
-  const bgRemovalConfig: Config = {
+  const bgRemovalConfig: any = {
     debug: false,
     rescale: true,
     device: 'gpu',
@@ -87,11 +89,14 @@ export const DragAndDrop = ({
   };
 
   const handleRemoveBackground = async () => {
-    if (preview) {
+    if (preview && bgModule) {
       setBeforeRemovingBgPreview(preview);
       setIsRemovingBg(true);
       try {
-        const imageBlob = await removeBackground(preview, bgRemovalConfig);
+        const imageBlob = await bgModule.removeBackground(
+          preview,
+          bgRemovalConfig
+        );
         const dataUrl = await blobToDataURL(imageBlob);
         setPreview(dataUrl);
       } catch (error) {
@@ -166,19 +171,28 @@ export const DragAndDrop = ({
     }
   }, [file]);
 
-  // handle bg removal
+  // load bg module
   useEffect(() => {
-    const preloadAssets = async () => {
-      try {
-        await preload(bgRemovalConfig);
-        console.log('Asset preloading succeeded');
-      } catch (error) {
-        console.error('Asset preloading failed:', error);
-      }
+    const load = async () => {
+      const module = await import('@imgly/background-removal');
+      setBgModule(module);
     };
-
-    preloadAssets();
+    load();
   }, []);
+
+  // handle bg removal preload assets
+  useEffect(() => {
+    if (bgModule) {
+      const preloadAssets = async () => {
+        try {
+          await bgModule.preload(bgRemovalConfig);
+        } catch (error) {
+          console.error('Asset preloading failed:', error);
+        }
+      };
+      preloadAssets();
+    }
+  }, [bgModule]);
 
   return (
     <div
