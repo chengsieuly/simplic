@@ -1,5 +1,5 @@
 import type { Meta } from '@storybook/react';
-import { Block } from './index';
+import { Block } from './component';
 
 const meta: Meta<typeof Block> = {
   component: Block,

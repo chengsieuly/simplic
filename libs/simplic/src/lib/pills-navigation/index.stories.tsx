@@ -1,7 +1,7 @@
 import { ArchiveBoxIcon, HomeIcon } from '@heroicons/react/24/outline';
 import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
-import { PillsNavigation } from './index';
+import { PillsNavigation } from './component';
 
 const meta: Meta<typeof PillsNavigation> = {
   component: PillsNavigation,

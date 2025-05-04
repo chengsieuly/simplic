@@ -2,7 +2,7 @@ import { ArchiveBoxIcon, HomeIcon } from '@heroicons/react/24/outline';
 import { SparklesIcon } from '@heroicons/react/24/solid';
 import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
-import { ColumnNavigation } from './index';
+import { ColumnNavigation } from './component';
 
 const meta: Meta<typeof ColumnNavigation> = {
   component: ColumnNavigation,

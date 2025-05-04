@@ -3,7 +3,7 @@ import { action } from '@storybook/addon-actions';
 import { expect, jest } from '@storybook/jest';
 import type { Meta, StoryObj } from '@storybook/react';
 import { userEvent, within } from '@storybook/testing-library';
-import { Button, IconButton } from '.';
+import { Button, IconButton } from './component';
 
 const meta: Meta<typeof Button> = {
   component: Button,

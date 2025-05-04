@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { DropdownMenu } from '.';
+import { DropdownMenu } from './component';
 
 const meta: Meta<typeof DropdownMenu> = {
   component: DropdownMenu,

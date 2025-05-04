@@ -1,7 +1,7 @@
 import { XMarkIcon } from '@heroicons/react/24/solid';
 import cn from 'classnames';
 import { useEffect } from 'react';
-import { IconButton } from '../button';
+import { IconButton } from '../button/component';
 
 interface ModalProps {
   open: boolean;

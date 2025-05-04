@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { Tag } from '../tag';
+import { Tag } from '../tag/component';
 import { ColumnDefinition, RowDefinition, RowValue } from './types';
 
 interface TableProps {

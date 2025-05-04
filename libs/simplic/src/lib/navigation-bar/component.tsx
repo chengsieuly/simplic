@@ -1,5 +1,5 @@
 import { UserCircleIcon } from '@heroicons/react/24/solid';
-import { Block } from '../block';
+import { Block } from '../block/component';
 
 interface NavigationBarProps {
   logo: React.ReactNode;

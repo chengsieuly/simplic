@@ -6,9 +6,9 @@ import {
 } from '@heroicons/react/24/outline';
 import cn from 'classnames';
 import { MouseEventHandler, useEffect, useId, useRef, useState } from 'react';
-import { IconButton } from '../button';
-import { LoadingAnimation } from '../loading-animation';
-import { toast } from '../toasts';
+import { IconButton } from '../button/component';
+import { LoadingAnimation } from '../loading-animation/component';
+import { toast } from '../toasts/component';
 import { blobToDataURL } from '../utils';
 import { preventDefaults } from '../utils/prevent-defaults';
 

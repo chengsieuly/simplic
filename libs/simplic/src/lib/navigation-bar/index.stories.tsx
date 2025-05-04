@@ -1,6 +1,6 @@
 import { SparklesIcon } from '@heroicons/react/24/solid';
 import type { Meta, StoryObj } from '@storybook/react';
-import { NavigationBar } from './index';
+import { NavigationBar } from './component';
 
 const meta: Meta<typeof NavigationBar> = {
   component: NavigationBar,

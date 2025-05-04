@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { noop } from 'lodash';
-import { DragAndDrop } from './';
+import { DragAndDrop } from './component';
 
 const meta: Meta<typeof DragAndDrop> = {
   component: DragAndDrop,

@@ -1,8 +1,8 @@
 import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
 import { noop } from 'lodash';
-import { ColorPicker } from '../color-picker';
-import { ActionTag, AddTag, RemovableTag, Tag } from './';
+import { ColorPicker } from '../color-picker/component';
+import { ActionTag, AddTag, RemovableTag, Tag } from './component';
 
 const meta: Meta<typeof Tag> = {
   component: Tag,

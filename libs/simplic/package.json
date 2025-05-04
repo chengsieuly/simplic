@@ -1,16 +1,116 @@
 {
   "name": "@jangy/simplic",
-  "version": "0.0.95",
+  "version": "0.0.96",
   "main": "./index.js",
   "style": "./simplic.css",
   "exports": {
-    ".": {
-      "import": "./index.mjs",
-      "require": "./index.js",
-      "types": "./index.d.ts"
-    },
     "./stylesheets/simplic.css": "./stylesheets/simplic.css",
-    "./stylesheets/date-picker.css": "./stylesheets/date-picker.css"
+    "./stylesheets/date-picker.css": "./stylesheets/date-picker.css",
+    "./avatar": {
+      "import": "./es/avatar/index.js",
+      "require": "./cjs/avatar/index.js",
+      "types": "./types/components/avatar/index.d.ts"
+    },
+    "./badge": {
+      "import": "./es/badge/index.js",
+      "require": "./cjs/badge/index.js",
+      "types": "./types/components/badge/index.d.ts"
+    },
+    "./block": {
+      "import": "./es/block/index.js",
+      "require": "./cjs/block/index.js",
+      "types": "./types/components/block/index.d.ts"
+    },
+    "./button": {
+      "import": "./es/button/index.js",
+      "require": "./cjs/button/index.js",
+      "types": "./types/components/button/index.d.ts"
+    },
+    "./carousel": {
+      "import": "./es/carousel/index.js",
+      "require": "./cjs/carousel/index.js",
+      "types": "./types/components/carousel/index.d.ts"
+    },
+    "./color-picker": {
+      "import": "./es/color-picker/index.js",
+      "require": "./cjs/color-picker/index.js",
+      "types": "./types/components/color-picker/index.d.ts"
+    },
+    "./column-navigation": {
+      "import": "./es/column-navigation/index.js",
+      "require": "./cjs/column-navigation/index.js",
+      "types": "./types/components/column-navigation/index.d.ts"
+    },
+    "./date-input": {
+      "import": "./es/date-input/index.js",
+      "require": "./cjs/date-input/index.js",
+      "types": "./types/components/date-input/index.d.ts"
+    },
+    "./date-picker": {
+      "import": "./es/date-picker/index.js",
+      "require": "./cjs/date-picker/index.js",
+      "types": "./types/components/date-picker/index.d.ts"
+    },
+    "./drag-and-drop": {
+      "import": "./es/drag-and-drop/index.js",
+      "require": "./cjs/drag-and-drop/index.js",
+      "types": "./types/components/drag-and-drop/index.d.ts"
+    },
+    "./dropdown-menu": {
+      "import": "./es/dropdown-menu/index.js",
+      "require": "./cjs/dropdown-menu/index.js",
+      "types": "./types/components/dropdown-menu/index.d.ts"
+    },
+    "./loading-animation": {
+      "import": "./es/loading-animation/index.js",
+      "require": "./cjs/loading-animation/index.js",
+      "types": "./types/components/loading-animation/index.d.ts"
+    },
+    "./modal": {
+      "import": "./es/modal/index.js",
+      "require": "./cjs/modal/index.js",
+      "types": "./types/components/modal/index.d.ts"
+    },
+    "./navigation-bar": {
+      "import": "./es/navigation-bar/index.js",
+      "require": "./cjs/navigation-bar/index.js",
+      "types": "./types/components/navigation-bar/index.d.ts"
+    },
+    "./pills-navigation": {
+      "import": "./es/pills-navigation/index.js",
+      "require": "./cjs/pills-navigation/index.js",
+      "types": "./types/components/pills-navigation/index.d.ts"
+    },
+    "./table": {
+      "import": "./es/table/index.js",
+      "require": "./cjs/table/index.js",
+      "types": "./types/components/table/index.d.ts"
+    },
+    "./tag": {
+      "import": "./es/tag/index.js",
+      "require": "./cjs/tag/index.js",
+      "types": "./types/components/tag/index.d.ts"
+    },
+    "./text-field": {
+      "import": "./es/text-field/index.js",
+      "require": "./cjs/text-field/index.js",
+      "types": "./types/components/text-field/index.d.ts"
+    },
+    "./toasts": {
+      "import": "./es/toasts/index.js",
+      "require": "./cjs/toasts/index.js",
+      "types": "./types/components/toasts/index.d.ts"
+    },
+    "./toggle-switch": {
+      "import": "./es/toggle-switch/index.js",
+      "require": "./cjs/toggle-switch/index.js",
+      "types": "./types/components/toggle-switch/index.d.ts"
+    },
+    "./utils": {
+      "import": "./es/utils/index.js",
+      "require": "./cjs/utils/index.js",
+      "types": "./types/components/utils/index.d.ts"
+    }
   },
   "publishConfig": {
     "access": "public"

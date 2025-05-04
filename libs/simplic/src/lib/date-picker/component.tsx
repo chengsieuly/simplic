@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 import _DatePicker, {
   ReactDatePickerCustomHeaderProps,
 } from 'react-datepicker';
-import { DateInput } from '../date-input';
+import { DateInput } from '../date-input/component';
 import { isValidDate } from '../utils';
 
 interface DatePickerProps {

@@ -1,6 +1,6 @@
 import type { Meta } from '@storybook/react';
 import { useState } from 'react';
-import { ToggleSwitch } from '.';
+import { ToggleSwitch } from './component';
 
 const meta: Meta<typeof ToggleSwitch> = {
   component: ToggleSwitch,
