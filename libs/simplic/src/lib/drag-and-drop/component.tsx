@@ -4,12 +4,14 @@ import {
   SparklesIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline';
+import { Config, preload, removeBackground } from '@imgly/background-removal';
 import cn from 'classnames';
 import { MouseEventHandler, useEffect, useId, useRef, useState } from 'react';
 import { IconButton } from '../button/component';
 import { LoadingAnimation } from '../loading-animation/component';
 import { toast } from '../toasts/component';
 import { blobToDataURL } from '../utils';
+import { blobToFile } from '../utils/images';
 import { preventDefaults } from '../utils/prevent-defaults';
 
 type DragAndDropImageShape = 'circle';
@@ -27,17 +29,20 @@ export const DragAndDrop = ({
 }: DragAndDropProps) => {
   const id = useId();
   const dropAreaRef = useRef<HTMLDivElement>(null);
-  const [bgModule, setBgModule] = useState<any>(null);
   const [shouldHighlight, setShouldHighlight] = useState(false);
   const [beforeRemovingBgPreview, setBeforeRemovingBgPreview] = useState<
     string | ArrayBuffer | null | undefined
   >();
+  const [beforeRemovingBgFile, setBeforeRemovingBgFile] = useState<File | null>(
+    null
+  );
+  const [previewFile, setPreviewFile] = useState<File | null>(null);
   const [preview, setPreview] = useState<
     string | ArrayBuffer | null | undefined
   >();
   const [isRemovingBg, setIsRemovingBg] = useState(false);
 
-  const bgRemovalConfig: any = {
+  const bgRemovalConfig: Config = {
     debug: false,
     rescale: true,
     device: 'gpu',
@@ -56,8 +61,10 @@ export const DragAndDrop = ({
       const reader = new FileReader();
       reader.onload = function (e) {
         setPreview(e.target?.result);
+        setPreviewFile(file);
         onImageSelect(file);
         setBeforeRemovingBgPreview(null);
+        setBeforeRemovingBgFile(null);
       };
       reader.readAsDataURL(file);
     }
@@ -71,6 +78,7 @@ export const DragAndDrop = ({
       const reader = new FileReader();
       reader.onload = function (e) {
         setPreview(e.target?.result);
+        setPreviewFile(file);
         onImageSelect(file);
         setBeforeRemovingBgPreview(null);
       };
@@ -82,21 +90,23 @@ export const DragAndDrop = ({
     e.stopPropagation();
     e.preventDefault();
     setPreview(null);
+    setPreviewFile(null);
     onImageSelect(null);
     setBeforeRemovingBgPreview(null);
   };
 
   const handleRemoveBackground = async () => {
-    if (preview && bgModule) {
+    if (preview) {
       setBeforeRemovingBgPreview(preview);
+      setBeforeRemovingBgFile(previewFile);
       setIsRemovingBg(true);
       try {
-        const imageBlob = await bgModule.removeBackground(
-          preview,
-          bgRemovalConfig
-        );
+        const imageBlob = await removeBackground(preview, bgRemovalConfig);
         const dataUrl = await blobToDataURL(imageBlob);
         setPreview(dataUrl);
+        const file = blobToFile(imageBlob);
+        onImageSelect(file);
+        setPreviewFile(file);
       } catch (error) {
         console.error('Processing failed:', error);
         toast.critical(
@@ -110,7 +120,10 @@ export const DragAndDrop = ({
 
   const handleRevertBgRemoval = () => {
     setPreview(beforeRemovingBgPreview);
+    setPreviewFile(beforeRemovingBgFile);
     setBeforeRemovingBgPreview(null);
+    setBeforeRemovingBgFile(null);
+    onImageSelect(beforeRemovingBgFile);
   };
 
   const highlight = () => setShouldHighlight(true);
@@ -162,36 +175,26 @@ export const DragAndDrop = ({
       const reader = new FileReader();
       reader.onload = function (e) {
         setPreview(e.target?.result);
+        setPreviewFile(file);
       };
       reader.readAsDataURL(file);
     } else {
       setPreview(null);
+      setPreviewFile(null);
     }
   }, [file]);
 
-  // load bg module
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const load = async () => {
-      const module = await import('@imgly/background-removal');
-      setBgModule(module);
-    };
-    load();
-  }, []);
-
   // handle bg removal preload assets
   useEffect(() => {
-    if (bgModule) {
-      const preloadAssets = async () => {
-        try {
-          await bgModule.preload(bgRemovalConfig);
-        } catch (error) {
-          console.error('Asset preloading failed:', error);
-        }
-      };
-      preloadAssets();
-    }
-  }, [bgModule]);
+    const preloadAssets = async () => {
+      try {
+        preload(bgRemovalConfig);
+      } catch (error) {
+        console.error('Asset preloading failed:', error);
+      }
+    };
+    preloadAssets();
+  }, []);
 
   return (
     <div
@@ -262,3 +265,5 @@ export const DragAndDrop = ({
     </div>
   );
 };
+
+export default DragAndDrop;
