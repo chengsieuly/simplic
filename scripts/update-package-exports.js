@@ -20,7 +20,7 @@ components.forEach((name) => {
     exportsMap[`./${name}`] = {
       import: `./es/${name}/index.js`,
       require: `./cjs/${name}/index.js`,
-      types: `./types/components/${name}/index.d.ts`,
+      types: `./types/lib/${name}/index.d.ts`,
     };
   }
 });

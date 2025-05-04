@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "nx run simplic:storybook",
-    "build": "rimraf dist && nx build simplic && npm run update-package-exports && npm run bump:patch",
+    "build": "rimraf dist && npm run bump:patch && nx build simplic && npm run update-package-exports",
     "update-package-exports": "node scripts/update-package-exports.js",
     "bump:patch": "cd libs/simplic && npm version patch",
     "gen": "nx g @nx/react:stories --project=simplic",
