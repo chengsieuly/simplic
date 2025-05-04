@@ -27,9 +27,7 @@ export const DragAndDrop = ({
 }: DragAndDropProps) => {
   const id = useId();
   const dropAreaRef = useRef<HTMLDivElement>(null);
-  const [bgModule, setBgModule] = useState<
-    null | typeof import('@imgly/background-removal')
-  >(null);
+  const [bgModule, setBgModule] = useState<any>(null);
   const [shouldHighlight, setShouldHighlight] = useState(false);
   const [beforeRemovingBgPreview, setBeforeRemovingBgPreview] = useState<
     string | ArrayBuffer | null | undefined
