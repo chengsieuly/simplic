@@ -1,6 +1,6 @@
 {
   "name": "@jangy/simplic",
-  "version": "0.0.91",
+  "version": "0.0.92",
   "main": "./index.js",
   "style": "./simplic.css",
   "exports": {
@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@heroicons/react": "2.2.0",
+    "@imgly/background-removal": "^1.6.0",
     "classnames": "2.5.1",
     "lodash": "4.17.21",
     "react": "19.0.0",
