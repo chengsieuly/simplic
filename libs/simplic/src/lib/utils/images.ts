@@ -44,3 +44,50 @@ export const isImageValid = (src: string) => {
 
   return promise;
 };
+
+export const resizeAndCompressImage = async (
+  file: File,
+  maxSize = 256,
+  quality = 0.8
+): Promise<Blob> => {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    const url = URL.createObjectURL(file);
+
+    img.onload = () => {
+      let { width, height } = img;
+
+      // Calculate new size while maintaining aspect ratio
+      const scale = Math.min(maxSize / width, maxSize / height);
+      const newWidth = width * scale;
+      const newHeight = height * scale;
+
+      // Create canvas and draw the resized image
+      const canvas = document.createElement('canvas');
+      canvas.width = newWidth;
+      canvas.height = newHeight;
+
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return reject(new Error('Canvas context not available'));
+      ctx.drawImage(img, 0, 0, newWidth, newHeight);
+
+      // Compress and output as Blob
+      canvas.toBlob(
+        (blob) => {
+          if (blob) resolve(blob);
+          else reject(new Error('Compression failed'));
+          URL.revokeObjectURL(url);
+        },
+        'image/jpeg', // or 'image/webp' if supported
+        quality // compression quality: 0 (worst) to 1 (best)
+      );
+    };
+
+    img.onerror = (err) => {
+      URL.revokeObjectURL(url);
+      reject(new Error('Image load failed'));
+    };
+
+    img.src = url;
+  });
+};
