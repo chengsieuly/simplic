@@ -9,6 +9,13 @@ interface ModalProps {
   close: () => void;
   transparent?: boolean;
   title?: string;
+  noHeader?: boolean;
+}
+
+interface ModalHeaderProps {
+  title?: string;
+  children: React.ReactNode;
+  className?: string;
 }
 
 interface ModalBodyProps {
@@ -21,12 +28,17 @@ interface ModalFooterProps {
   className?: string;
 }
 
+interface ModalCloseButtonProps {
+  close: () => void;
+}
+
 export const Modal = ({
   open,
   close,
   children,
   transparent,
   title,
+  noHeader,
 }: ModalProps) => {
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
@@ -68,19 +80,28 @@ export const Modal = ({
           }
         )}
       >
-        <div className="flex gap-3 justify-between items-center p-3">
-          {title ? (
-            <h1 className="font-semibold text-lg">{title}</h1>
-          ) : (
-            <span />
-          )}
-          <IconButton size="small" icon={<XMarkIcon />} onClick={close} />
-        </div>
+        {!noHeader && (
+          <ModalHeader
+            title={title}
+            className="flex gap-3 justify-between items-center p-3"
+          >
+            {title ? (
+              <h1 className="font-semibold text-lg">{title}</h1>
+            ) : (
+              <span />
+            )}
+            <ModalCloseButton close={close} />
+          </ModalHeader>
+        )}
         {children}
       </div>
     </div>
   );
 };
+
+export const ModalHeader = ({ children, className }: ModalHeaderProps) => (
+  <div className={className}>{children}</div>
+);
 
 export const ModalBody = ({ children, className }: ModalBodyProps) => (
   <div className={cn('pt-0 pr-8 pb-8 pl-8 flex-1 overflow-auto', className)}>
@@ -100,3 +121,7 @@ export const ModalFooter = ({ children, className }: ModalFooterProps) => {
     </div>
   );
 };
+
+export const ModalCloseButton = ({ close }: ModalCloseButtonProps) => (
+  <IconButton size="small" icon={<XMarkIcon />} onClick={close} />
+);
