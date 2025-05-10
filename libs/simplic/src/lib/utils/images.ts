@@ -78,7 +78,7 @@ export const resizeAndCompressImage = async (
           else reject(new Error('Compression failed'));
           URL.revokeObjectURL(url);
         },
-        'image/jpeg', // or 'image/webp' if supported
+        'image/webp', // or 'image/webp' if supported
         quality // compression quality: 0 (worst) to 1 (best)
       );
     };
