@@ -47,41 +47,43 @@ export const isImageValid = (src: string) => {
 
 export const resizeAndCompressImage = async (
   file: File,
-  maxSize = 512,
+  maxSize = 256,
   quality = 0.8
 ): Promise<Blob> => {
   return new Promise((resolve, reject) => {
     const img = new Image();
     const url = URL.createObjectURL(file);
+    img.crossOrigin = 'anonymous';
 
     img.onload = () => {
-      const tempCanvas = document.createElement('canvas');
-      const tempCtx = tempCanvas.getContext('2d');
-      if (!tempCtx) return reject(new Error('Canvas context not available'));
+      const originalCanvas = document.createElement('canvas');
+      const ctx = originalCanvas.getContext('2d');
+      if (!ctx) return reject(new Error('Canvas context not available'));
 
-      tempCanvas.width = img.width;
-      tempCanvas.height = img.height;
-      tempCtx.drawImage(img, 0, 0);
+      originalCanvas.width = img.width;
+      originalCanvas.height = img.height;
+      ctx.drawImage(img, 0, 0);
 
-      const imgData = tempCtx.getImageData(0, 0, img.width, img.height);
-      const pixels = imgData.data;
+      const imageData = ctx.getImageData(0, 0, img.width, img.height);
+      const { data, width, height } = imageData;
 
-      let top = img.height,
+      let top = height,
         bottom = 0,
-        left = img.width,
+        left = width,
         right = 0;
 
-      for (let y = 0; y < img.height; y++) {
-        for (let x = 0; x < img.width; x++) {
-          const index = (y * img.width + x) * 4;
-          const r = pixels[index];
-          const g = pixels[index + 1];
-          const b = pixels[index + 2];
-          const a = pixels[index + 3];
+      for (let y = 0; y < height; y++) {
+        for (let x = 0; x < width; x++) {
+          const idx = (y * width + x) * 4;
+          const [r, g, b, a] = [
+            data[idx],
+            data[idx + 1],
+            data[idx + 2],
+            data[idx + 3],
+          ];
 
-          const isWhite = r > 240 && g > 240 && b > 240 && a > 0;
-
-          if (!isWhite) {
+          const isNotWhite = !(r > 250 && g > 250 && b > 250 && a > 250);
+          if (isNotWhite) {
             if (x < left) left = x;
             if (x > right) right = x;
             if (y < top) top = y;
@@ -90,56 +92,52 @@ export const resizeAndCompressImage = async (
         }
       }
 
-      const cropWidth = right - left + 1;
-      const cropHeight = bottom - top + 1;
+      const croppedWidth = right - left + 1;
+      const croppedHeight = bottom - top + 1;
 
-      if (cropWidth <= 0 || cropHeight <= 0) {
-        return reject(new Error('Image is blank or all white'));
-      }
+      const croppedCanvas = document.createElement('canvas');
+      const croppedCtx = croppedCanvas.getContext('2d');
+      if (!croppedCtx)
+        return reject(new Error('Cropped canvas context not available'));
 
-      const cropCanvas = document.createElement('canvas');
-      const cropCtx = cropCanvas.getContext('2d');
-      if (!cropCtx) return reject(new Error('Canvas context not available'));
-
-      cropCanvas.width = cropWidth;
-      cropCanvas.height = cropHeight;
-      cropCtx.drawImage(
-        img,
+      // Resize cropped canvas to fit content
+      croppedCanvas.width = croppedWidth;
+      croppedCanvas.height = croppedHeight;
+      croppedCtx.drawImage(
+        originalCanvas,
         left,
         top,
-        cropWidth,
-        cropHeight,
+        croppedWidth,
+        croppedHeight,
         0,
         0,
-        cropWidth,
-        cropHeight
+        croppedWidth,
+        croppedHeight
       );
 
-      // Resize only if necessary
-      let finalWidth = cropWidth;
-      let finalHeight = cropHeight;
-
-      const scale = Math.min(1, maxSize / cropWidth, maxSize / cropHeight); // scale = 1 if already within bounds
-
-      if (scale < 1) {
-        finalWidth = Math.round(cropWidth * scale);
-        finalHeight = Math.round(cropHeight * scale);
-      }
+      // Resize if needed
+      const scale = Math.min(
+        maxSize / croppedWidth,
+        maxSize / croppedHeight,
+        1
+      );
+      const finalWidth = Math.round(croppedWidth * scale);
+      const finalHeight = Math.round(croppedHeight * scale);
 
       const finalCanvas = document.createElement('canvas');
+      const finalCtx = finalCanvas.getContext('2d');
+      if (!finalCtx)
+        return reject(new Error('Final canvas context not available'));
+
       finalCanvas.width = finalWidth;
       finalCanvas.height = finalHeight;
-
-      const finalCtx = finalCanvas.getContext('2d');
-      if (!finalCtx) return reject(new Error('Canvas context not available'));
-
-      finalCtx.drawImage(cropCanvas, 0, 0, finalWidth, finalHeight);
+      finalCtx.drawImage(croppedCanvas, 0, 0, finalWidth, finalHeight);
 
       finalCanvas.toBlob(
         (blob) => {
+          URL.revokeObjectURL(url);
           if (blob) resolve(blob);
           else reject(new Error('Compression failed'));
-          URL.revokeObjectURL(url);
         },
         'image/webp',
         quality
