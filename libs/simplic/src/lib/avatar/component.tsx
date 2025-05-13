@@ -6,11 +6,13 @@ import { isImageValid } from '../utils';
 interface AvatarProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   firstName: string;
   lastName: string;
+  size?: 'small' | 'medium';
 }
 
 export const Avatar: React.FC<AvatarProps> = ({
   src,
   alt = 'User Avatar',
+  size = 'medium',
   firstName,
   lastName,
   className,
@@ -63,7 +65,11 @@ export const Avatar: React.FC<AvatarProps> = ({
   return (
     <div
       className={cn(
-        'relative flex items-center justify-center w-10 h-10 rounded-full overflow-hidden',
+        'relative flex items-center justify-center rounded-full overflow-hidden',
+        {
+          'w-8 h-8': size === 'small',
+          'w-10 h-10': size === 'medium',
+        },
         className
       )}
     >
