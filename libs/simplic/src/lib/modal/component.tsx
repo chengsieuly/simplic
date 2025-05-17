@@ -86,7 +86,7 @@ export const Modal = ({
             className="flex gap-3 justify-between items-center p-3"
           >
             {title ? (
-              <h1 className="font-semibold text-lg">{title}</h1>
+              <h1 className="font-semibold text-lg line-clamp-1">{title}</h1>
             ) : (
               <span />
             )}
