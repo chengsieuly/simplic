@@ -57,3 +57,18 @@
   --color-critical-900: var(--color-red-900);
   --color-critical-950: var(--color-red-950);
 }
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+}
+
+.safe-area-top {
+  padding-top: env(safe-area-inset-top);
+}
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}

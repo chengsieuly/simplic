@@ -10,6 +10,7 @@ interface ModalProps {
   transparent?: boolean;
   title?: string;
   noHeader?: boolean;
+  className?: string;
 }
 
 interface ModalHeaderProps {
@@ -39,6 +40,7 @@ export const Modal = ({
   transparent,
   title,
   noHeader,
+  className,
 }: ModalProps) => {
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
@@ -67,7 +69,8 @@ export const Modal = ({
           'opacity-0 pointer-events-none': !open,
           'bg-neutral-50/90': transparent,
           'bg-white': !transparent,
-        }
+        },
+        className
       )}
       onClick={handleOverlayClick}
     >
