@@ -61,7 +61,7 @@ export const Modal = ({
   return (
     <div
       className={cn(
-        'transitions ease-in-out duration-200 fixed inset-0 flex items-center justify-center bg-neutral-50/90 bg-white md:bg-neutral-50/90 safe-area-top safe-area-bottom',
+        'transitions ease-in-out duration-200 fixed inset-0 flex items-center justify-center bg-neutral-50/90 bg-white md:bg-neutral-50/90 safe-area-top',
         {
           'opacity-100 pointer-events-auto': open,
           'opacity-0 pointer-events-none': !open,
