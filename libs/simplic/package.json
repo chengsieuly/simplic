@@ -1,6 +1,6 @@
 {
   "name": "@jangy/simplic",
-  "version": "0.0.116",
+  "version": "0.0.117",
   "main": "./index.js",
   "style": "./simplic.css",
   "exports": {
@@ -30,6 +30,11 @@
       "import": "./es/carousel/index.js",
       "require": "./cjs/carousel/index.js",
       "types": "./types/lib/carousel/index.d.ts"
+    },
+    "./checkbox": {
+      "import": "./es/checkbox/index.js",
+      "require": "./cjs/checkbox/index.js",
+      "types": "./types/lib/checkbox/index.d.ts"
     },
     "./color-picker": {
       "import": "./es/color-picker/index.js",
