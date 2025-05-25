@@ -1,5 +1,6 @@
 import { CheckIcon } from '@heroicons/react/24/outline';
 import classNames from 'classnames';
+import { noop } from 'lodash';
 import { useId } from 'react';
 
 interface CheckboxProps {
@@ -24,7 +25,13 @@ export const Checkbox: React.FC<CheckboxProps> = ({
         onChange(!checked);
       }}
     >
-      <input id={id} checked={checked} type="checkbox" className="sr-only" />
+      <input
+        id={id}
+        checked={checked}
+        type="checkbox"
+        className="sr-only"
+        onChange={noop}
+      />
       <div
         tabIndex={0}
         className="flex justify-center items-center w-6 h-6 text-primary-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-2 focus:ring-primary-500 focus:outline-none"
