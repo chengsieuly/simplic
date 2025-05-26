@@ -39,7 +39,7 @@ export const DatePicker = ({
       <input
         id={id}
         type="date"
-        className="appearance-none border border-neutral-200 rounded-lg px-3 py-2"
+        className="appearance-none border border-neutral-200 rounded-md px-3 py-2"
         value={selectedDate}
         min={minDate}
         max={maxDate}

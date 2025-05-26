@@ -29,13 +29,10 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
           id={id}
           required={required}
           aria-required={required}
-          className={cn(
-            'px-3 py-2 bg-neutral-100 rounded-sm focus:outline-none focus:ring-1 focus:ring-black',
-            {
-              'text-center': alignment === 'center',
-              'text-left': alignment === 'left',
-            }
-          )}
+          className={cn('px-3 py-2 bg-neutral-100 rounded-md', {
+            'text-center': alignment === 'center',
+            'text-left': alignment === 'left',
+          })}
           aria-label={label}
           ref={ref}
           {...rest}

@@ -1,6 +1,6 @@
 {
   "name": "@jangy/simplic",
-  "version": "0.0.128",
+  "version": "0.0.130",
   "main": "./index.js",
   "style": "./simplic.css",
   "exports": {
@@ -45,11 +45,6 @@
       "import": "./es/column-navigation/index.js",
       "require": "./cjs/column-navigation/index.js",
       "types": "./types/lib/column-navigation/index.d.ts"
-    },
-    "./date-input": {
-      "import": "./es/date-input/index.js",
-      "require": "./cjs/date-input/index.js",
-      "types": "./types/lib/date-input/index.d.ts"
     },
     "./date-picker": {
       "import": "./es/date-picker/index.js",
