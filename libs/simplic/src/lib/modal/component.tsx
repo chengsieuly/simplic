@@ -112,7 +112,7 @@ export const ModalFooter = ({ children, className }: ModalFooterProps) => {
   return (
     <div
       className={cn(
-        'flex justify-center items-center gap-3 sticky bottom-0 bg-white z-10 border-t border-neutral-50 p-3',
+        'flex justify-center items-center gap-3 sticky bottom-safe bg-white z-10 border-t border-neutral-50 p-3',
         className
       )}
     >
