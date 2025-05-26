@@ -24,9 +24,12 @@ export const Button = ({
   const As = as as any;
 
   return (
-    <div
+    <As
+      {...(As === 'button' ? { type: 'button' } : {})}
+      disabled={disabled}
+      {...rest}
       className={cn(
-        'font-semibold rounded-lg transitions duration-300 ease-in-out whitespace-nowrap w-fit cursor-pointer',
+        'block font-semibold rounded-lg transitions duration-300 ease-in-out whitespace-nowrap w-fit h-fit',
         {
           'py-1 px-3': size === 'small',
           'py-2 px-4': size === 'medium',
@@ -45,15 +48,8 @@ export const Button = ({
         className
       )}
     >
-      <As
-        {...(As === 'button' ? { type: 'button' } : {})}
-        disabled={disabled}
-        className="cursor-pointer"
-        {...rest}
-      >
-        {children}
-      </As>
-    </div>
+      {children}
+    </As>
   );
 };
 
