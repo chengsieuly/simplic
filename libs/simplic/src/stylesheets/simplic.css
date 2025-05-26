@@ -66,9 +66,13 @@ body {
   background-color: #fff;
 }
 
-.safe-area-top {
+.pt-safe {
   padding-top: env(safe-area-inset-top);
 }
-.safe-area-bottom {
+.pb-safe {
   padding-bottom: env(safe-area-inset-bottom);
+}
+
+.bottom-safe {
+  bottom: env(safe-area-inset-bottom);
 }

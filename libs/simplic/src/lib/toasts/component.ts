@@ -9,7 +9,8 @@ const createToastContainer = () => {
     container.id = 'toast-container';
     container.setAttribute('aria-live', 'polite');
     container.setAttribute('aria-atomic', 'true');
-    container.className = 'fixed top-4 right-4 z-50 flex flex-col gap-2';
+    container.className =
+      'fixed top-4 pt-safe right-4 z-50 flex flex-col gap-2';
     document.body.appendChild(container);
   }
   return container;
@@ -23,7 +24,7 @@ const showToast = ({ message = '', type = 'success' }) => {
   toast.tabIndex = 0;
 
   toast.className = cn(
-    'px-4 pb-3 safe-area-top rounded-lg shadow-md text-white animate-jump-in animate-duration-300',
+    'px-4 py-3 rounded-lg shadow-md text-white animate-jump-in animate-duration-300',
     {
       'bg-green-600': type === 'success',
       'bg-red-600': type === 'critical',
