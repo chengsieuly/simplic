@@ -49,6 +49,7 @@ export const Disabled: Story = {
     disabled: true,
     children: 'Click me',
     variant: 'primary',
+    size: 'small',
     onClick: action('clicked'),
   },
 };
@@ -60,5 +61,14 @@ export const ButtonAsIcon = () => (
     <IconButton size="large" icon={<PencilIcon />} />
   </div>
 );
+
+export const LinkButton: Story = {
+  args: {
+    children: 'Click me',
+    variant: 'primary',
+    onClick: action('clicked'),
+    as: 'a',
+  },
+};
 
 export default meta;

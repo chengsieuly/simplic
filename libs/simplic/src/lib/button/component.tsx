@@ -3,6 +3,8 @@ import { ButtonHTMLAttributes } from 'react';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'critical';
+  as?: keyof HTMLElementTagNameMap;
+  size?: 'small' | 'medium' | 'large';
 }
 
 interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -12,47 +14,46 @@ interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 export const Button = ({
   className,
+  as = 'button',
   children,
   variant = 'primary',
+  size = 'medium',
   disabled,
   ...rest
 }: ButtonProps) => {
+  const As = as as any;
+
   return (
-    <button
-      type="button"
-      disabled={disabled}
-      {...rest}
+    <div
       className={cn(
-        'font-semibold py-2 px-4 rounded-lg transitions duration-300 ease-in-out',
+        'font-semibold rounded-lg transitions duration-300 ease-in-out whitespace-nowrap w-fit cursor-pointer',
         {
+          'py-1 px-3': size === 'small',
+          'py-2 px-4': size === 'medium',
+          'py-3 px-5': size === 'large',
           'bg-primary-600 text-white hover:bg-primary-500':
             variant === 'primary',
-        },
-        {
           'border border-neutral-600 hover:bg-neutral-100':
             variant === 'secondary',
-        },
-        {
           'bg-critical-500 text-white hover:bg-critical-400':
             variant === 'critical',
-        },
-        {
           'bg-primary-400!': variant === 'primary' && disabled,
-        },
-        {
           'bg-critical-300!': variant === 'critical' && disabled,
-        },
-        {
           'cursor-not-allowed': disabled,
-        },
-        {
           'cursor-pointer': !disabled,
         },
         className
       )}
     >
-      {children}
-    </button>
+      <As
+        {...(As === 'button' ? { type: 'button' } : {})}
+        disabled={disabled}
+        className="cursor-pointer"
+        {...rest}
+      >
+        {children}
+      </As>
+    </div>
   );
 };
 
