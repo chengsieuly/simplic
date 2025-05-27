@@ -103,7 +103,7 @@ export const ModalHeader = ({ children, className }: ModalHeaderProps) => (
 );
 
 export const ModalBody = ({ children, className }: ModalBodyProps) => (
-  <div className={cn('pt-0 pr-8 pb-8 pl-8 flex-1 overflow-auto', className)}>
+  <div className={cn('pt-0 px-3 pb-8 flex-1 overflow-auto', className)}>
     {children}
   </div>
 );
