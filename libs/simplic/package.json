@@ -1,6 +1,6 @@
 {
   "name": "@jangy/simplic",
-  "version": "0.0.133",
+  "version": "0.0.136",
   "main": "./index.js",
   "style": "./simplic.css",
   "exports": {
@@ -80,6 +80,11 @@
       "import": "./es/pills-navigation/index.js",
       "require": "./cjs/pills-navigation/index.js",
       "types": "./types/lib/pills-navigation/index.d.ts"
+    },
+    "./pull-to-refresh": {
+      "import": "./es/pull-to-refresh/index.js",
+      "require": "./cjs/pull-to-refresh/index.js",
+      "types": "./types/lib/pull-to-refresh/index.d.ts"
     },
     "./table": {
       "import": "./es/table/index.js",
