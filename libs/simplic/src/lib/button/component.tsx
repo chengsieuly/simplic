@@ -17,7 +17,7 @@ export const Button = ({
   as = 'button',
   children,
   variant = 'primary',
-  size = 'medium',
+  size = 'small',
   disabled,
   ...rest
 }: ButtonProps) => {
@@ -29,11 +29,11 @@ export const Button = ({
       disabled={disabled}
       {...rest}
       className={cn(
-        'block font-semibold rounded-lg transitions duration-300 ease-in-out whitespace-nowrap w-fit h-fit',
+        'block font-semibold rounded-lg transitions duration-300 ease-in-out whitespace-nowrap w-fit',
         {
-          'py-1 px-3': size === 'small',
-          'py-2 px-4': size === 'medium',
-          'py-3 px-5': size === 'large',
+          'h-8 px-3': size === 'small',
+          'h-9 px-4': size === 'medium',
+          'h-10 px-5': size === 'large',
           'bg-primary-600 text-white hover:bg-primary-500':
             variant === 'primary',
           'border border-neutral-600 hover:bg-neutral-100':
