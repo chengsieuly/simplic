@@ -29,7 +29,7 @@ export const Button = ({
       disabled={disabled}
       {...rest}
       className={cn(
-        'block font-semibold rounded-lg transitions duration-300 ease-in-out whitespace-nowrap w-fit',
+        'flex items-center font-semibold rounded-lg transitions duration-300 ease-in-out whitespace-nowrap w-fit',
         {
           'h-8 px-3': size === 'small',
           'h-9 px-4': size === 'medium',
