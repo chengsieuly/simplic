@@ -6,7 +6,7 @@ interface ModalProps {
   open: boolean;
   children: React.ReactNode;
   close: () => void;
-  title?: string;
+  title?: React.ReactNode | null;
   noHeader?: boolean;
   className?: string;
 }
@@ -110,7 +110,7 @@ export const ModalHeader = ({ children, className }: ModalHeaderProps) => (
 );
 
 export const ModalBody = ({ children, className }: ModalBodyProps) => (
-  <div className={cn('pt-0 px-3 pb-8 flex-1 overflow-auto', className)}>
+  <div className={cn('py-8 px-3 flex-1 overflow-auto', className)}>
     {children}
   </div>
 );
