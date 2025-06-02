@@ -9,7 +9,14 @@ const meta: Meta<typeof ToggleSwitch> = {
 
 export const Primary = () => {
   const [on, setOn] = useState(false);
-  return <ToggleSwitch label="Switch" on={on} onChange={setOn} />;
+  return (
+    <ToggleSwitch
+      label="Switch"
+      hint="We will help you pass this item by sending more constant reminders to you and people who have expressed interest."
+      on={on}
+      onChange={setOn}
+    />
+  );
 };
 
 export default meta;

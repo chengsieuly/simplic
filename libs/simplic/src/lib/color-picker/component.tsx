@@ -57,7 +57,14 @@ export const ColorPicker = ({
       ref={dropdownRef}
     >
       {trigger ? (
-        <div aria-haspopup aria-expanded={open} onClick={() => setOpen(!open)}>
+        <div
+          aria-haspopup
+          aria-expanded={open}
+          onClick={(e) => {
+            e.stopPropagation();
+            setOpen(!open);
+          }}
+        >
           {trigger}
         </div>
       ) : (
@@ -84,7 +91,8 @@ export const ColorPicker = ({
             <button
               key={color}
               type="button"
-              onClick={() => {
+              onClick={(e) => {
+                e.stopPropagation();
                 onChange(color);
                 setOpen(false);
                 triggerRef.current?.focus();

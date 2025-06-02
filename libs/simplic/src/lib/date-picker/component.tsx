@@ -21,6 +21,7 @@ export const DatePicker = ({
   min,
   max,
   onChange,
+  className,
   ...rest
 }: DatePickerProps) => {
   const id = useId();
@@ -29,7 +30,7 @@ export const DatePicker = ({
   const maxDate = max ? max.toISOString().split('T')[0] : undefined;
 
   return (
-    <div>
+    <div className={className}>
       <label
         htmlFor={id}
         className={cn('mb-2 block', { 'sr-only': !!hideLabel })}
