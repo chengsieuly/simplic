@@ -12,7 +12,6 @@ interface ModalProps {
 }
 
 interface ModalHeaderProps {
-  title?: string;
   children: React.ReactNode;
   className?: string;
 }
@@ -79,17 +78,26 @@ export const Modal = ({
         )}
       >
         {!noHeader && (
-          <ModalHeader
-            title={title}
-            className="relative flex gap-3 justify-between items-center p-3 bg-black text-white sm:rounded-t-lg"
-          >
-            {title && (
-              <h1 className="mx-auto font-semibold text-lg line-clamp-1">
-                {title}
-              </h1>
-            )}
+          <div className="relative">
+            <ModalHeader
+              className={cn(
+                'flex gap-3 justify-between items-center p-3 bg-black text-white sm:rounded-t-lg h-14',
+                {
+                  'sm:h-0 sm:p-0': !title,
+                }
+              )}
+            >
+              {title &&
+                (typeof title === 'string' ? (
+                  <h1 className="mx-auto font-semibold text-lg line-clamp-1">
+                    {title}
+                  </h1>
+                ) : (
+                  title
+                ))}
+            </ModalHeader>
             <ModalCloseButton close={close} />
-          </ModalHeader>
+          </div>
         )}
         {children}
       </div>
