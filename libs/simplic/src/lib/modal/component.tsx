@@ -1,7 +1,6 @@
 import { XMarkIcon } from '@heroicons/react/24/solid';
 import cn from 'classnames';
 import { useEffect } from 'react';
-import { IconButton } from '../button/component';
 
 interface ModalProps {
   open: boolean;
@@ -72,7 +71,7 @@ export const Modal = ({
     >
       <div
         className={cn(
-          'flex flex-col w-full md:w-3/4 lg:w-1/2 h-full md:h-auto md:max-h-[90%] transitions ease-in-out duration-200 bg-white rounded-md shadow-lg transform',
+          'flex flex-col w-full md:w-3/4 lg:w-1/2 h-full md:h-auto md:max-h-[90%] transitions ease-in-out duration-200 bg-white rounded-lg shadow-lg transform',
           {
             'scale-0 opacity-0': !open,
             'scale-100 opacity-100': open,
@@ -82,12 +81,12 @@ export const Modal = ({
         {!noHeader && (
           <ModalHeader
             title={title}
-            className="flex gap-3 justify-between items-center p-3"
+            className="relative flex gap-3 justify-between items-center p-3 bg-black text-white sm:rounded-t-lg"
           >
-            {title ? (
-              <h1 className="font-semibold text-lg line-clamp-1">{title}</h1>
-            ) : (
-              <span />
+            {title && (
+              <h1 className="mx-auto font-semibold text-lg line-clamp-1">
+                {title}
+              </h1>
             )}
             <ModalCloseButton close={close} />
           </ModalHeader>
@@ -112,7 +111,7 @@ export const ModalFooter = ({ children, className }: ModalFooterProps) => {
   return (
     <div
       className={cn(
-        'flex justify-center items-center gap-3 sticky bottom-safe bg-white z-10 border-t border-neutral-50 p-3',
+        'flex justify-center items-center gap-3 sticky bottom-safe bg-white z-10 border-t border-neutral-50 sm:rounded-lg p-3',
         className
       )}
     >
@@ -122,5 +121,11 @@ export const ModalFooter = ({ children, className }: ModalFooterProps) => {
 };
 
 export const ModalCloseButton = ({ close }: ModalCloseButtonProps) => (
-  <IconButton size="small" icon={<XMarkIcon />} onClick={close} />
+  <button
+    type="button"
+    className="absolute top-1/2 -translate-y-1/2 sm:-top-5 right-3 sm:right-0 cursor-pointer"
+    onClick={close}
+  >
+    <XMarkIcon className="w-6 text-white sm:text-black" />
+  </button>
 );
