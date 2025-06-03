@@ -13,7 +13,12 @@ export const Primary: Story = {
     children: <button className="border">Hi</button>,
     anchorPosition: 'left',
     items: [
-      { label: 'Profile', onClick: () => alert('Profile') },
+      {
+        label: 'Profile',
+        type: 'link',
+        href: '/profile',
+        onClick: () => alert('Profile'),
+      },
       { type: 'divider' },
       { label: 'Logout', onClick: () => alert('Logout') },
     ],

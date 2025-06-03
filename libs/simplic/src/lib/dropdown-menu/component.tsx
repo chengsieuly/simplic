@@ -8,8 +8,9 @@ import React, {
 } from 'react';
 
 type DropdownItem<T = Record<string, any>> = T & {
-  type?: 'action' | 'divider';
+  type?: 'action' | 'link' | 'divider';
   label?: string;
+  href?: string;
   onClick?: (meta: DropdownItem) => void;
 };
 
@@ -77,10 +78,27 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
           onKeyDown={handleKeyDown}
         >
           <div className="py-1">
-            {items.map((item, index) =>
-              item.type === 'divider' ? (
-                <hr key={index} className="border-neutral-100" />
-              ) : (
+            {items.map((item, index) => {
+              if (item.type === 'divider') {
+                return <hr key={index} className="border-neutral-100" />;
+              }
+              if (item.type === 'link') {
+                return (
+                  <a
+                    key={index}
+                    href={item.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      item.onClick?.(item);
+                      setOpen(false);
+                    }}
+                    className="block w-full px-4 py-2 text-left transition hover:bg-gray-100 focus-visible:bg-gray-100 focus-visible:outline-none cursor-pointer"
+                  >
+                    {item.label}
+                  </a>
+                );
+              }
+              return (
                 <button
                   key={index}
                   onClick={() => {
@@ -92,8 +110,8 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
                 >
                   {item.label}
                 </button>
-              )
-            )}
+              );
+            })}
           </div>
         </div>
       )}
