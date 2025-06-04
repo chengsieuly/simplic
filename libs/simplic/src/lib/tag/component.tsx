@@ -32,7 +32,7 @@ export const Tag = ({ children, color = 'blue-200' }: TagProps) => {
     <div
       ref={ref}
       className={cn(
-        'text-xs font-semibold py-1 px-5 rounded-3xl w-fit',
+        'text-xs font-semibold py-1 px-5 rounded-3xl w-fit whitespace-nowrap',
         `bg-${color}`
       )}
     >
@@ -71,7 +71,7 @@ export const ActionTag = ({
       ref={ref}
       onClick={!iconClickOnly ? handleIconClick : noop}
       className={cn(
-        'flex items-center gap-1 text-xs font-semibold py-1 rounded-3xl w-fit cursor-pointer',
+        'flex items-center gap-1 text-xs font-semibold py-1 rounded-3xl w-fit cursor-pointer whitespace-nowrap',
         `bg-${color}`,
         {
           'pl-3 pr-5': !!icon,
