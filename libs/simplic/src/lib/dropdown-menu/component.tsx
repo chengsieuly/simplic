@@ -10,6 +10,7 @@ import React, {
 type DropdownItem<T = Record<string, any>> = T & {
   type?: 'action' | 'link' | 'divider';
   label?: string;
+  color?: string;
   href?: string;
   onClick?: (meta: DropdownItem) => void;
 };
@@ -92,7 +93,12 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
                       item.onClick?.(item);
                       setOpen(false);
                     }}
-                    className="block w-full px-4 py-2 text-left transition hover:bg-gray-100 focus-visible:bg-gray-100 focus-visible:outline-none cursor-pointer"
+                    className={cn(
+                      'block w-full px-4 py-2 text-left transition hover:bg-gray-100 focus-visible:bg-gray-100 focus-visible:outline-none cursor-pointer text',
+                      {
+                        [`text-${item.color}`]: !!item.color,
+                      }
+                    )}
                   >
                     {item.label}
                   </a>
@@ -105,7 +111,12 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
                     item.onClick?.(item);
                     setOpen(false);
                   }}
-                  className="w-full px-4 py-2 text-left transition hover:bg-gray-100 focus-visible:bg-gray-100 focus-visible:outline-none cursor-pointer"
+                  className={cn(
+                    'w-full px-4 py-2 text-left transition hover:bg-gray-100 focus-visible:bg-gray-100 focus-visible:outline-none cursor-pointer',
+                    {
+                      [`text-${item.color}`]: !!item.color,
+                    }
+                  )}
                   role="menuitem"
                 >
                   {item.label}

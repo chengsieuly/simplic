@@ -16,6 +16,7 @@ export const Primary: Story = {
       {
         label: 'Profile',
         type: 'link',
+        color: 'critical-600',
         href: '/profile',
         onClick: () => alert('Profile'),
       },
