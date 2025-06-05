@@ -8,6 +8,7 @@ import { getBackgroundColorHex, getTextColorFromOklch } from '../utils/colors';
 interface TagProps {
   children: React.ReactNode;
   color?: string;
+  variant?: 'borderless' | 'solid';
 }
 
 interface ActionTagProps extends TagProps {
@@ -16,7 +17,11 @@ interface ActionTagProps extends TagProps {
   iconClickOnly?: boolean;
 }
 
-export const Tag = ({ children, color = 'blue-200' }: TagProps) => {
+export const Tag = ({
+  children,
+  color = 'blue-200',
+  variant = 'solid',
+}: TagProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const [bgColorHex, setBgColorHex] = useState('');
 
@@ -33,7 +38,10 @@ export const Tag = ({ children, color = 'blue-200' }: TagProps) => {
       ref={ref}
       className={cn(
         'text-xs font-semibold py-1 px-5 rounded-3xl w-fit whitespace-nowrap',
-        `bg-${color}`
+        {
+          [`bg-${color}`]: variant === 'solid',
+          [`outline-1 outline-${color}`]: variant == 'borderless',
+        }
       )}
     >
       <span style={{ color: textColor ? textColor : 'initial' }}>

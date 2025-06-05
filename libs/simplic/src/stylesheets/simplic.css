@@ -2,7 +2,7 @@
 @import 'tailwindcss-animated';
 
 /* Color picker */
-@source inline("bg-{neutral,red,orange,yellow,green,blue,indigo,violet}-{100,200,300,400,500,600,700}");
+@source inline("{bg,outline}-{neutral,red,orange,yellow,green,blue,indigo,violet}-{100,200,300,400,500,600,700}");
 
 @theme {
   /* Primary (blue) */

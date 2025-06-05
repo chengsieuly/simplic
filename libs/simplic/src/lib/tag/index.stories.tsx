@@ -11,9 +11,23 @@ const meta: Meta<typeof Tag> = {
 
 type Story = StoryObj<typeof Tag>;
 
-export const Primary: Story = {
+export const Solid: Story = {
   args: {
     children: 'japan',
+  },
+  argTypes: {
+    color: {
+      control: { type: 'select' },
+      options: ['green-200', 'fuchsia-200', 'stone-200', 'blue-600'],
+      description: 'Select tag color',
+    },
+  },
+};
+
+export const Borderless: Story = {
+  args: {
+    children: 'japan',
+    variant: 'borderless',
   },
   argTypes: {
     color: {
