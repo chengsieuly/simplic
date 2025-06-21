@@ -5,10 +5,14 @@ interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
   hideLabel?: boolean;
   alignment?: 'left' | 'center';
+  trailing?: React.ReactNode;
 }
 
 export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
-  ({ label, required, hideLabel, alignment = 'center', ...rest }, ref) => {
+  (
+    { label, required, hideLabel, alignment = 'center', trailing, ...rest },
+    ref
+  ) => {
     const id = useId();
 
     return (
@@ -24,19 +28,23 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
           {label}
           {required && <span className="text-red-500 ml-1">*</span>}
         </label>
-        <input
-          type="text"
-          id={id}
-          required={required}
-          aria-required={required}
-          className={cn('px-3 py-2 bg-neutral-100 rounded-md', {
-            'text-center': alignment === 'center',
-            'text-left': alignment === 'left',
-          })}
-          aria-label={label}
-          ref={ref}
-          {...rest}
-        />
+        <div className="relative">
+          <input
+            type="text"
+            id={id}
+            required={required}
+            aria-required={required}
+            className={cn('px-3 py-2 bg-neutral-100 rounded-md w-full', {
+              'text-center': alignment === 'center',
+              'text-left': alignment === 'left',
+              'pr-12': !!trailing,
+            })}
+            aria-label={label}
+            ref={ref}
+            {...rest}
+          />
+          <div className="absolute top-2 right-3">{trailing}</div>
+        </div>
       </div>
     );
   }

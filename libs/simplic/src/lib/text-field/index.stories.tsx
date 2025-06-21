@@ -1,3 +1,5 @@
+import { EyeIcon } from '@heroicons/react/24/solid';
+import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
 import { TextField } from './component';
 
@@ -30,6 +32,23 @@ export const Required: Story = {
     alignment: 'left',
     required: true,
     value: '',
+  },
+};
+
+export const TrailingAction: Story = {
+  args: {
+    label: 'Your email',
+    value:
+      'Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello ',
+    trailing: (
+      <button
+        type="button"
+        className="cursor-pointer"
+        onClick={action('trailing-click')}
+      >
+        <EyeIcon className="w-6 h-6" />
+      </button>
+    ),
   },
 };
 
