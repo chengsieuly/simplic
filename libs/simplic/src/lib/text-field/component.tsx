@@ -10,7 +10,7 @@ interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
 
 export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
   (
-    { label, required, hideLabel, alignment = 'center', trailing, ...rest },
+    { label, required, hideLabel, alignment = 'left', trailing, ...rest },
     ref
   ) => {
     const id = useId();
@@ -34,7 +34,7 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
             id={id}
             required={required}
             aria-required={required}
-            className={cn('px-3 py-2 bg-neutral-100 rounded-md w-full', {
+            className={cn('px-4 py-2 bg-neutral-100 rounded-md w-full', {
               'text-center': alignment === 'center',
               'text-left': alignment === 'left',
               'pr-12': !!trailing,

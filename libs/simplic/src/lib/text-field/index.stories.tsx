@@ -38,8 +38,7 @@ export const Required: Story = {
 export const TrailingAction: Story = {
   args: {
     label: 'Your email',
-    value:
-      'Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello ',
+    value: '',
     trailing: (
       <button
         type="button"
