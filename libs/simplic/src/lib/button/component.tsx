@@ -4,12 +4,12 @@ import { ButtonHTMLAttributes } from 'react';
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'critical';
   as?: keyof HTMLElementTagNameMap;
-  size?: 'small' | 'medium' | 'large';
+  size?: 'xs' | 'small' | 'medium' | 'large';
 }
 
 interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   icon: React.ReactNode;
-  size?: 'small' | 'medium' | 'large';
+  size?: 'xs' | 'small' | 'medium' | 'large';
 }
 
 export const Button = ({
@@ -31,6 +31,7 @@ export const Button = ({
       className={cn(
         'flex items-center font-semibold rounded-lg transitions duration-300 ease-in-out whitespace-nowrap w-fit',
         {
+          'h-7 px-2 text-xs': size === 'xs',
           'h-8 px-3': size === 'small',
           'h-9 px-4': size === 'medium',
           'h-10 px-5': size === 'large',
@@ -65,6 +66,7 @@ export const IconButton = ({
     className={cn(
       'flex items-center justify-center cursor-pointer w-9 h-9 hover:bg-neutral-100 rounded-lg',
       {
+        'w-7 h-7': size === 'xs',
         'w-8 h-8': size === 'small',
         'w-9 h-9': size === 'medium',
         'w-10 h-10': size === 'large',

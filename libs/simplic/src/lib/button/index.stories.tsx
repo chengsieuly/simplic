@@ -54,6 +54,15 @@ export const Disabled: Story = {
   },
 };
 
+export const VariousSizes = () => (
+  <div className="flex flex-col gap-5">
+    <Button size="xs">xs</Button>
+    <Button size="small">small</Button>
+    <Button size="medium">medium</Button>
+    <Button size="large">large</Button>
+  </div>
+);
+
 export const ButtonAsIcon = () => (
   <div className="flex flex-col gap-5">
     <IconButton size="small" icon={<PencilIcon />} />
