@@ -26,11 +26,11 @@ export const Button = ({
   ...rest
 }: ButtonProps) => {
   const As = as as any;
-
+  const disableInteractions = disabled || loading;
   return (
     <As
       {...(As === 'button' ? { type: 'button' } : {})}
-      disabled={disabled}
+      disabled={disableInteractions}
       {...rest}
       className={cn(
         'flex items-center font-semibold rounded-lg transitions duration-300 ease-in-out whitespace-nowrap w-fit',
@@ -45,10 +45,10 @@ export const Button = ({
             variant === 'secondary',
           'bg-critical-500 text-white hover:bg-critical-400':
             variant === 'critical',
-          'bg-primary-400!': variant === 'primary' && disabled,
-          'bg-critical-300!': variant === 'critical' && disabled,
-          'cursor-not-allowed': disabled,
-          'cursor-pointer': !disabled,
+          'bg-primary-400!': variant === 'primary' && disableInteractions,
+          'bg-critical-300!': variant === 'critical' && disableInteractions,
+          'cursor-not-allowed': disableInteractions,
+          'cursor-pointer': !disableInteractions,
         },
         className
       )}
@@ -63,30 +63,37 @@ export const IconButton = ({
   size = 'medium',
   loading,
   className,
+  disabled,
   ...rest
-}: IconButtonProps) => (
-  <button
-    type="button"
-    {...rest}
-    className={cn(
-      'flex items-center justify-center cursor-pointer w-9 h-9 hover:bg-neutral-100 rounded-lg',
-      {
-        'w-7 h-7': size === 'xs',
-        'w-8 h-8': size === 'small',
-        'w-9 h-9': size === 'medium',
-        'w-10 h-10': size === 'large',
-      },
-      className
-    )}
-  >
-    <div
-      className={cn({
-        'w-5 h-5': size === 'small',
-        'w-6 h-6': size === 'medium',
-        'w-7 h-7': size === 'large',
-      })}
+}: IconButtonProps) => {
+  const disableInteractions = disabled || loading;
+  return (
+    <button
+      type="button"
+      disabled={disableInteractions}
+      {...rest}
+      className={cn(
+        'flex items-center justify-center cursor-pointer w-9 h-9 hover:bg-neutral-100 rounded-lg',
+        {
+          'w-7 h-7': size === 'xs',
+          'w-8 h-8': size === 'small',
+          'w-9 h-9': size === 'medium',
+          'w-10 h-10': size === 'large',
+          'cursor-not-allowed': disableInteractions,
+          'cursor-pointer': !disableInteractions,
+        },
+        className
+      )}
     >
-      {loading ? <LoadingAnimation size={size} /> : icon}
-    </div>
-  </button>
-);
+      <div
+        className={cn({
+          'w-5 h-5': size === 'small',
+          'w-6 h-6': size === 'medium',
+          'w-7 h-7': size === 'large',
+        })}
+      >
+        {loading ? <LoadingAnimation size={size} /> : icon}
+      </div>
+    </button>
+  );
+};

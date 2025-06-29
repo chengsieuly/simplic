@@ -56,10 +56,12 @@ export const Disabled: Story = {
 };
 
 export const Loading = () => {
+  const clicked = action('clicked');
   const [loading, setLoading] = useState(false);
   const handleClick = () => {
     setLoading(true);
-    setTimeout(() => setLoading(false), 1000);
+    clicked();
+    setTimeout(() => setLoading(false), 2000);
   };
   return (
     <div className="flex flex-col gap-5">
@@ -89,10 +91,12 @@ export const VariousSizes = () => (
 );
 
 export const ButtonAsIcon = () => {
+  const clicked = action('clicked');
   const [loading, setLoading] = useState(false);
   const handleClick = () => {
     setLoading(true);
-    setTimeout(() => setLoading(false), 1000);
+    clicked();
+    setTimeout(() => setLoading(false), 2000);
   };
 
   return (
