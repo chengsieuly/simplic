@@ -3,6 +3,7 @@ import { action } from '@storybook/addon-actions';
 import { expect, jest } from '@storybook/jest';
 import type { Meta, StoryObj } from '@storybook/react';
 import { userEvent, within } from '@storybook/testing-library';
+import { useState } from 'react';
 import { Button, IconButton } from './component';
 
 const meta: Meta<typeof Button> = {
@@ -54,6 +55,30 @@ export const Disabled: Story = {
   },
 };
 
+export const Loading = () => {
+  const [loading, setLoading] = useState(false);
+  const handleClick = () => {
+    setLoading(true);
+    setTimeout(() => setLoading(false), 1000);
+  };
+  return (
+    <div className="flex flex-col gap-5">
+      <Button loading={loading} size="xs" onClick={handleClick}>
+        Action
+      </Button>
+      <Button loading={loading} size="small" onClick={handleClick}>
+        Action
+      </Button>
+      <Button loading={loading} size="medium" onClick={handleClick}>
+        Action
+      </Button>
+      <Button loading={loading} size="large" onClick={handleClick}>
+        Action
+      </Button>
+    </div>
+  );
+};
+
 export const VariousSizes = () => (
   <div className="flex flex-col gap-5">
     <Button size="xs">xs</Button>
@@ -63,13 +88,36 @@ export const VariousSizes = () => (
   </div>
 );
 
-export const ButtonAsIcon = () => (
-  <div className="flex flex-col gap-5">
-    <IconButton size="small" icon={<PencilIcon />} />
-    <IconButton size="medium" icon={<PencilIcon />} />
-    <IconButton size="large" icon={<PencilIcon />} />
-  </div>
-);
+export const ButtonAsIcon = () => {
+  const [loading, setLoading] = useState(false);
+  const handleClick = () => {
+    setLoading(true);
+    setTimeout(() => setLoading(false), 1000);
+  };
+
+  return (
+    <div className="flex flex-col gap-5">
+      <IconButton
+        loading={loading}
+        size="small"
+        icon={<PencilIcon />}
+        onClick={handleClick}
+      />
+      <IconButton
+        loading={loading}
+        size="medium"
+        icon={<PencilIcon />}
+        onClick={handleClick}
+      />
+      <IconButton
+        loading={loading}
+        size="large"
+        icon={<PencilIcon />}
+        onClick={handleClick}
+      />
+    </div>
+  );
+};
 
 export const LinkButton: Story = {
   args: {

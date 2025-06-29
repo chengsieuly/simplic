@@ -1,15 +1,18 @@
 import cn from 'classnames';
 import { ButtonHTMLAttributes } from 'react';
+import { LoadingAnimation } from '../loading-animation';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'critical';
   as?: keyof HTMLElementTagNameMap;
   size?: 'xs' | 'small' | 'medium' | 'large';
+  loading?: boolean;
 }
 
 interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   icon: React.ReactNode;
   size?: 'xs' | 'small' | 'medium' | 'large';
+  loading?: boolean;
 }
 
 export const Button = ({
@@ -19,6 +22,7 @@ export const Button = ({
   variant = 'primary',
   size = 'small',
   disabled,
+  loading,
   ...rest
 }: ButtonProps) => {
   const As = as as any;
@@ -49,7 +53,7 @@ export const Button = ({
         className
       )}
     >
-      {children}
+      {loading ? <LoadingAnimation size={size} /> : children}
     </As>
   );
 };
@@ -57,6 +61,7 @@ export const Button = ({
 export const IconButton = ({
   icon,
   size = 'medium',
+  loading,
   className,
   ...rest
 }: IconButtonProps) => (
@@ -81,7 +86,7 @@ export const IconButton = ({
         'w-7 h-7': size === 'large',
       })}
     >
-      {icon}
+      {loading ? <LoadingAnimation size={size} /> : icon}
     </div>
   </button>
 );
